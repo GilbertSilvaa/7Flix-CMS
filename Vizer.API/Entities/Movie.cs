@@ -2,23 +2,9 @@
 
 namespace Vizer.API.Entities;
 
-public class Movie(
-  string title,
-  float review,
-  Video? video,
-  string banner,
-  string poster,
-  string category,
-  string releaseYear,
-  int parentalRating) 
-  : Midia(
-  title, 
-  banner, 
-  poster, 
-  releaseYear, 
-  parentalRating)
+public class Movie : Midia
 {
-  public string Category { get; set; } = category;
-  public float Review { get; set; } = review;
-  public Video? Video { get; set; } = video;
+  public string Category { get; set; } = string.Empty;
+  public float Review { get; set; }
+  public Video? Video { get; set; }
 }

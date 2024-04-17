@@ -36,7 +36,7 @@ public class MovieService
   {
     try
     {
-      await _repository.GetAsync();
+      await _repository.CreateAsync(dto.ToEntity());
     }
     catch (Exception ex)
     {

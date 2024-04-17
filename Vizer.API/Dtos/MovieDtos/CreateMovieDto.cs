@@ -16,14 +16,16 @@ public class CreateMovieDto
 
   public Movie ToEntity()
   {
-    return new Movie(
-      Title, 
-      Review, 
-      Video, 
-      Banner, 
-      Poster, 
-      Category, 
-      ReleaseYear, 
-      ParentalRating);
+    return new()
+    {
+      Title = Title,
+      Video = Video,
+      Banner = Banner,
+      Poster = Poster,
+      Review = Review,
+      Category = Category,
+      ReleaseYear = ReleaseYear,
+      ParentalRating = ParentalRating
+    };
   }
 }

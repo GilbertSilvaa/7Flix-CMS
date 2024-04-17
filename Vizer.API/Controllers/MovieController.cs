@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Vizer.API.Dtos.MovieDtos;
+using Vizer.API.Exceptions;
 using Vizer.API.Services;
 
 namespace Vizer.API.Controllers;
@@ -44,6 +45,24 @@ public class MovieController : ControllerBase
     {
       await _service.Create(dto);
       return Created();
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
+
+  [HttpPut]
+  public async Task<IActionResult> Update(UpdateMovieDto dto)
+  {
+    try
+    {
+      await _service.Update(dto);
+      return NoContent();
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
     }
     catch (Exception ex)
     {

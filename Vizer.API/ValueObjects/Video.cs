@@ -2,6 +2,6 @@
 
 public record Video(
   string Url,
-  string StreamForma,
-  long Duration
+  long Duration,
+  string StreamForma
 );

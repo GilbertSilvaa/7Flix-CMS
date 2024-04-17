@@ -16,7 +16,7 @@ public class CreateMovieDto
 
   public Movie ToEntity()
   {
-    return new()
+    return new Movie
     {
       Title = Title,
       Video = Video,

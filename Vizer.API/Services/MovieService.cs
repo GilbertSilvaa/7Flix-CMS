@@ -1,4 +1,5 @@
-﻿using Vizer.API.Dtos.MovieDtos;
+﻿using SharpCompress.Common;
+using Vizer.API.Dtos.MovieDtos;
 using Vizer.API.Entities;
 using Vizer.API.Exceptions;
 using Vizer.API.Repositories;
@@ -13,7 +14,12 @@ public class MovieService
     => await _repository.GetAsync();
 
   public async Task<Movie?> Get(string id)
-    => await _repository.GetAsync(id);
+  {
+    var response = await _repository.GetAsync(id)
+      ?? throw new NotFoundException("movie not found");
+
+    return response;
+  }
 
   public async Task Create(CreateMovieDto dto)
     => await _repository.CreateAsync(dto.ToEntity());
@@ -27,5 +33,13 @@ public class MovieService
 
     entity.CreateAt = response.CreateAt;
     await _repository.UpdateAsync(dto.Id, entity);
+  }
+
+  public async Task Delete(string id)
+  {
+    var response = await _repository.GetAsync(id)
+      ?? throw new NotFoundException("movie not found");
+
+    await _repository.RemoveAsync(response.Id);
   }
 }

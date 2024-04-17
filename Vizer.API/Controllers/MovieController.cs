@@ -32,6 +32,10 @@ public class MovieController : ControllerBase
     {
       return Ok(await _service.Get(id));
     }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
     catch (Exception ex)
     {
       return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
@@ -58,6 +62,24 @@ public class MovieController : ControllerBase
     try
     {
       await _service.Update(dto);
+      return NoContent();
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
+
+  [HttpDelete("{id}")]
+  public async Task<IActionResult> Delete(string id)
+  {
+    try
+    {
+      await _service.Delete(id);
       return NoContent();
     }
     catch (NotFoundException ex)

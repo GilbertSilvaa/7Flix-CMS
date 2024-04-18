@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-using Vizer.API.Dtos.SerieDtos;
+﻿using Vizer.API.Dtos.SerieDtos;
 using Vizer.API.Entities;
 using Vizer.API.Exceptions;
 using Vizer.API.Repositories;
@@ -29,10 +28,19 @@ public class SerieService
     var response = await _repository.GetAsync(dto.IdSerie)
       ?? throw new NotFoundException("serie not found");
 
-    var episode = dto.GetEpisode();
-    episode.Id = ObjectId.GenerateNewId().ToString();
+    response.Episodes.Add(dto.GetEpisode());
+    await _repository.UpdateAsync(dto.IdSerie, response);
+  }
 
-    response.Episodes.Add(episode);
+  public async Task RemoveEpisode(RemoveEpisodeDto dto)
+  {
+    var response = await _repository.GetAsync(dto.IdSerie)
+      ?? throw new NotFoundException("serie not found");
+
+    var episode = response.Episodes.SingleOrDefault(e => e.Id == dto.IdEpisode)
+      ?? throw new NotFoundException("episode not found");
+
+    response.Episodes.Remove(episode);
     await _repository.UpdateAsync(dto.IdSerie, response);
   }
 }

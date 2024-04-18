@@ -7,7 +7,7 @@ public abstract class EntityBase
 {
   [BsonId]
   [BsonRepresentation(BsonType.ObjectId)]
-  public string Id { get; set; } = string.Empty;
+  public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
 
   [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
   public DateTime CreateAt { get; set; } = DateTime.Now;

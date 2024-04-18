@@ -74,4 +74,23 @@ public class SerieController : ControllerBase
       return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
     }
   }
+
+  [HttpPost]
+  [Route("RemoveEpisode")]
+  public async Task<IActionResult> RemoveEpisode(RemoveEpisodeDto dto)
+  {
+    try
+    {
+      await _service.RemoveEpisode(dto);
+      return NoContent();
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
 }

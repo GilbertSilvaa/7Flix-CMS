@@ -30,6 +30,7 @@ public class SerieService
     var reponse = await _repository.GetAsync(entity.Id)
       ?? throw new NotFoundException("serie not found");
 
+    entity.Episodes = reponse.Episodes;
     entity.CreateAt = reponse.CreateAt;
     await _repository.UpdateAsync(dto.Id, entity);
   }

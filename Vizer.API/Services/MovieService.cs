@@ -1,5 +1,4 @@
-﻿using SharpCompress.Common;
-using Vizer.API.Dtos.MovieDtos;
+﻿using Vizer.API.Dtos.MovieDtos;
 using Vizer.API.Entities;
 using Vizer.API.Exceptions;
 using Vizer.API.Repositories;

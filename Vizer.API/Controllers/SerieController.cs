@@ -55,4 +55,23 @@ public class SerieController : ControllerBase
       return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
     }
   }
+
+  [HttpPost]
+  [Route("AddEpisode")]
+  public async Task<IActionResult> AddEpisode(AddEpisodeDto dto)
+  {
+    try
+    {
+      await _service.AddEpisode(dto);
+      return NoContent();
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
 }

@@ -26,7 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2.25rem 0;
+  padding: 2.5rem 0;
 }
 
 .menu .logo img {
@@ -42,14 +42,21 @@
 .menu .options button {
   color: var(--white);
   padding: 1rem;
+  padding-left: 2rem;
   font-size: 1rem;
   font-weight: 500;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   cursor: pointer;
   background-color: #ffffff23;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: .8rem;
 }
 
 .menu .options button.active {
-  background-color: var(--yellow);
+  background-color: #f1a50e66;
+  border-left: .5rem solid var(--yellow);
 }

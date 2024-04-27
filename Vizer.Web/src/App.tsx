@@ -1,12 +1,5 @@
 import { Router } from './router'
-import { Layout } from './view/layouts/Layout'
 
-function App() {
-  return (
-    <Layout>
-      <Router/>
-    </Layout>
-  )
-}
+const App = () => <Router/>
 
 export default App

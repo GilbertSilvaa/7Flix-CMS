@@ -4,9 +4,9 @@
   max-width: 320px;
   background-color: var(--green);
 
-  -webkit-box-shadow: 4px 4px 8px 0px rgba(234, 234, 234, 0.233);
-  -moz-box-shadow: 4px 4px 8px 0px rgba(234, 234, 234, 0.233);
-  box-shadow: 4px 4px 8px 0px rgba(234, 234, 234, 0.233);
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(163, 163, 163, 0.233);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(163, 163, 163, 0.233);
+  box-shadow: 4px 4px 8px 0px rgba(163, 163, 163, 0.233);
 
   &:hover {
     main .icon,

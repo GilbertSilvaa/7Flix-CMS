@@ -15,12 +15,12 @@ const PAGES = {
     path: '/'
   },
   movies:{
-    title: 'Movies',
+    title: 'Filmes',
     Icon: BiMovie,
     path: '/movies'
   },
   series:{
-    title: 'Series',
+    title: 'Séries',
     Icon: BiMoviePlay,
     path: '/series'
   }

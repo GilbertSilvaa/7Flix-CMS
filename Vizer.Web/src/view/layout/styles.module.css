@@ -5,12 +5,12 @@
 }
 
 .main {
-  margin: 1rem;
+  margin: 1.5rem;
   margin-left: 2rem;
-  padding: 1rem;
-  border: 1px solid var(--white);
+  padding: 1.5rem;
   border-radius: 8px;
   flex: 1;
+  background-color: #ffffff0c;
 }
 
 .menu {
@@ -58,5 +58,5 @@
 
 .menu .options button.active {
   background-color: #f1a50e66;
-  border-left: .5rem solid var(--yellow);
+  border-left: .4rem solid var(--yellow);
 }

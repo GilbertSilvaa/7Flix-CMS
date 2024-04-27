@@ -1,5 +1,5 @@
 export function MoviesView() {
   return (
-    <h2>movies page</h2>
+    <h1>Movies</h1>
   )
 }

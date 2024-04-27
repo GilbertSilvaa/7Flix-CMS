@@ -1,5 +1,5 @@
 export function SeriesView() {
   return (
-    <h2>series page</h2>
+    <h1>Series</h1>
   )
 }

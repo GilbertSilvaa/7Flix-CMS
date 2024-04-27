@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DashboardView } from '../view/pages/dashboard';
 import { MoviesView } from '../view/pages/movies';
 import { SeriesView } from '../view/pages/series';
-import { Layout } from '../view/layouts/Layout';
+import { Layout } from '../view/layout';
 
 export function Router() {
   return (

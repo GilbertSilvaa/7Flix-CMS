@@ -1,0 +1,45 @@
+.card {
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 320px;
+  background-color: var(--green);
+
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(234, 234, 234, 0.233);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(234, 234, 234, 0.233);
+  box-shadow: 4px 4px 8px 0px rgba(234, 234, 234, 0.233);
+
+  &:hover {
+    main .icon,
+    main .quantity {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.card main .icon,
+.card main .quantity {
+  transition: .6s;
+}
+
+.card main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem .9rem;
+  padding-right: 1.4rem;
+}   
+  
+.card main .quantity {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.card footer {
+  width: 100%;
+  background-color: #00000035;
+  border-bottom-left-radius: .75rem;
+  border-bottom-right-radius: .75rem;
+  padding: .75rem .9rem;
+  font-size: 1rem;
+  margin-top: .25rem;
+}

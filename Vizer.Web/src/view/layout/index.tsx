@@ -2,7 +2,7 @@ import { ReactNode, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BiHomeAlt, BiMovie, BiMoviePlay } from 'react-icons/bi'
 import logo from '../../assets/logo.png'
-import styles from './Layout.module.css'
+import styles from './styles.module.css'
 
 interface ILayoutProps {
   children: ReactNode

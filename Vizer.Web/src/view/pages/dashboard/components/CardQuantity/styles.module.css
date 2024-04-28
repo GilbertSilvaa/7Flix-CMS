@@ -1,7 +1,7 @@
 .card {
   border-radius: 0.75rem;
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
   background-color: var(--green);
 
   -webkit-box-shadow: 4px 4px 8px 0px rgba(163, 163, 163, 0.233);

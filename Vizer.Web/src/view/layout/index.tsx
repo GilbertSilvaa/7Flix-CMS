@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { BiHomeAlt, BiMovie, BiMoviePlay } from 'react-icons/bi'
+import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import styles from './styles.module.css'
 
@@ -54,7 +54,7 @@ export function Layout({ children }: ILayoutProps) {
               <button 
                 key={index}
                 className={currentPage === p ? styles.active : ''} 
-                onClick={_ => handleChangePage(p as TPages)}
+                onClick={() => handleChangePage(p as TPages)}
               >
                 <Icon size={24}/>      
                 <span>{ title }</span>              

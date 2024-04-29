@@ -1,0 +1,90 @@
+
+.table {
+  border-radius: .8rem;
+  width: 100%;
+  background-color: var(--black);
+  table-layout: auto;
+}
+
+.table th {
+  text-align: start;
+  padding: .75rem;
+  background: var(--gray);
+
+  &:first-child {
+    border-top-left-radius: .8rem;
+    width: 70%;
+  }
+  
+  &:last-child {
+    border-top-right-radius: .8rem;
+    text-align: center;
+    width: 10%;
+  }
+}
+
+.table td{
+  padding: .5rem .75rem;
+  border: 1px solid var(--gray);
+}
+
+.table tbody tr:last-child td {
+  &:first-child {
+    border-bottom-left-radius: .8rem;
+  }
+
+  &:last-child {
+    border-bottom-right-radius: .8rem;
+  }  
+}
+
+.table .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+}
+
+.table .actions button {
+  padding: .5rem .6rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: .5s;
+  
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.footer {
+  padding-top: .75rem;
+  padding-right: .3rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8rem;
+}
+
+.footer button {
+  background-color: var(--gray);
+  padding: .3rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  transition: .5s;
+  font-size: 1.1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    opacity: .7;
+  }
+}

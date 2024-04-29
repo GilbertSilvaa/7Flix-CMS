@@ -2,13 +2,14 @@
 
 :root {
   --yellow: #e69626;
-  --orange: #fca61f;
+  --orange: #c4740c;
   --black: #151b2f;
-  --gray: #788097;
+  --gray: #555f7e;
   --purple: linear-gradient(180deg, #b35ff7 0%, #C484F3 100%);
   --pink: #FF919D;
   --white: #efefef;
   --green: #1fa85ad0;
+  --blue: #125e94;
 }
 
 * {

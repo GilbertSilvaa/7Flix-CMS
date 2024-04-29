@@ -8,11 +8,11 @@ interface ICardQuatityProps {
   backgroundColor: string
 }
 
-export function CardQuantity(props: ICardQuatityProps) {
+export function CardQuantity({ backgroundColor, ...props }: ICardQuatityProps) {
   return (
     <div 
       className={styles.card} 
-      style={{ backgroundColor: props.backgroundColor }}
+      style={{ backgroundColor }}
     >
       <main>
         <props.Icon size={64} className={styles.icon}/>

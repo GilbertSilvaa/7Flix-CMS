@@ -1,5 +1,16 @@
+import { TableContent } from '../../components/tableContent';
+import { DATA } from './data';
+
 export function MoviesView() {
   return (
-    <h1>Movies</h1>
+    <div>
+      <h1>Filmes</h1>
+
+      <TableContent 
+        data={DATA}
+        handleEdit={id => console.log('editando: ', id)}
+        handleView={id =>  console.log('visualizando: ', id)}
+      />
+    </div>
   )
 }

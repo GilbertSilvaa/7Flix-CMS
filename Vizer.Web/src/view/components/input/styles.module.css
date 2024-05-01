@@ -11,7 +11,7 @@
   font-size: 1rem;
   padding: .6rem 1rem;
   border-radius: .6rem;
-  border: 1.5px solid #c8c8c8;
+  border: 1.5px solid var(--white-2);
 
   &::placeholder {
     color: #bbbbbb;
@@ -22,7 +22,11 @@
   font-size: 1rem;
   font-weight: 600;
   text-transform: capitalize;
-  margin-bottom: .35rem;
+  margin-bottom: .5rem;
+
+  span {
+    color: #d31919;
+  }
 }
 
 .content .inputBox {
@@ -36,6 +40,6 @@
   right: .6rem;
   height: 100%;
   background-color: var(--black);
-  border-top: 1.5px solid #c8c8c8;
-  border-bottom: 1.5px solid #c8c8c8;
+  border-top: 1.5px solid var(--white-2);
+  border-bottom: 1.5px solid var(--white-2);
 }

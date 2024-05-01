@@ -1,0 +1,27 @@
+.content label {
+  font-weight: 600;
+}
+
+.options {
+  margin-top: .4rem;
+  padding: .6rem .8rem;
+  background-color: var(--black);
+  border-radius: .6rem;
+  border: 1.5px solid var(--white-2);
+
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.option {
+  display: flex;
+  gap: .5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.option input {
+  width: 1rem;
+  accent-color: var(--yellow);
+}

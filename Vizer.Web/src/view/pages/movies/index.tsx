@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { FaPlus } from 'react-icons/fa6';
-import { Button, TableContent } from '../../components';
-import { DATA } from './data';
-import { MovieForm } from './form';
+import { useState } from 'react'
+import { FaPlus } from 'react-icons/fa6'
+import { Button, TableContent } from '../../components'
+import { MovieForm } from './components/Form'
+import { DATA } from './data'
 
 export function MoviesView() {
   const [isFormView, setIsFormView] = useState(false)
 
   if (isFormView)
-    return <MovieForm/>
+    return <MovieForm toBack={() => setIsFormView(false)}/>
 
   return (
     <div>

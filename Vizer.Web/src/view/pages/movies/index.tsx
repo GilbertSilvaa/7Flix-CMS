@@ -1,4 +1,4 @@
-import { TableContent } from '../../components/tableContent';
+import { TableContent } from '../../components';
 import { DATA } from './data';
 
 export function MoviesView() {

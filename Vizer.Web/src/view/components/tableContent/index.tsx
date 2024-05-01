@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaRegEye } from 'react-icons/fa';
 import { MdEdit, MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
+import { Input } from '../input';
 import styles from './styles.module.css';
 
 interface ITableContentData {
@@ -16,10 +17,25 @@ interface ITableContentProps {
 }
 
 export function TableContent({ data, handleEdit, handleView }: ITableContentProps) {
-  const [currentPagination, setCurrentPagination] = useState(0);
+  const [content, setContent] = useState(data)
+  const [currentPagination, setCurrentPagination] = useState(0)
+
+  function handleSeach(value: string) {
+    setContent(data.filter(({ title }) => 
+      title.toLowerCase().match(value.toLowerCase())))
+  }
 
   return (
     <div>
+      <div className={styles.search}>
+        <div className={styles.inputBox}>
+          <Input 
+            placeholder="pesquisar..." 
+            onChange={e => handleSeach(e.target.value)}
+          />
+        </div>
+      </div>
+
       <table className={styles.table}>
         <thead>
           <tr>
@@ -29,7 +45,7 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
           </tr>
         </thead>
         <tbody>
-          {data
+          {content
             .slice((currentPagination * 6), ((currentPagination * 6) + 6))
             .map((params, index) => (
               <tr key={index}>
@@ -64,9 +80,11 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
           >
             <MdNavigateBefore/>
           </button>
-          <span>{currentPagination + 1} de {Math.ceil(data.length/6)}</span>
+          <span>
+            {currentPagination + 1} de {Math.ceil(content.length/6)}
+          </span>
           <button 
-            disabled={currentPagination + 1 === Math.ceil(data.length/6)}
+            disabled={currentPagination + 1 === Math.ceil(content.length/6)}
             onClick={() => setCurrentPagination(prev => prev+1)}
           >
             <MdNavigateNext/>

@@ -5,8 +5,9 @@
 }
 
 .content input {
+  width: 100%;
   color: var(--white);  
-  background-color: transparent;
+  background-color: var(--black);
   font-size: 1rem;
   padding: .6rem 1rem;
   border-radius: .6rem;
@@ -22,4 +23,19 @@
   font-weight: 600;
   text-transform: capitalize;
   margin-bottom: .35rem;
+}
+
+.content .inputBox {
+  width: 100%;
+  position: relative;
+}
+
+.content svg {
+  position: absolute;
+  top: 0;
+  right: .5rem;
+  height: 100%;
+  background-color: var(--black);
+  border-top: 1.5px solid #c8c8c8;
+  border-bottom: 1.5px solid #c8c8c8;
 }

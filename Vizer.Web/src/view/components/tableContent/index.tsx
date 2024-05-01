@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaRegEye } from 'react-icons/fa';
-import { MdEdit, MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
-import { Input } from '../input';
+import { MdEdit, MdNavigateBefore, MdNavigateNext, MdSearch } from 'react-icons/md';
+import { Input } from '../Input';
 import styles from './styles.module.css';
 
 interface ITableContentData {
@@ -30,6 +30,7 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
       <div className={styles.search}>
         <div className={styles.inputBox}>
           <Input 
+            icon={MdSearch}
             placeholder="pesquisar..." 
             onChange={e => handleSeach(e.target.value)}
           />

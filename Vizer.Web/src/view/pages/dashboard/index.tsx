@@ -34,7 +34,10 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 export function DashboardView() {
   return (
     <div className={styles.content}>
-      <h1>Dashboard</h1>
+      <div className="header-page">
+        <h1>Dashboard</h1>
+      </div>
+      
       <div className={styles.cards}>
         {CARDS.map((c, index) => (
           <CardQuantity

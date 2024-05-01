@@ -1,4 +1,4 @@
-export * from './IconButton'
+export * from './Button'
 export * from './Input'
 export * from './TableContent'
 

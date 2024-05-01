@@ -5,11 +5,12 @@
   --orange: #c4740c;
   --black: #151b2f;
   --gray: #555f7e;
-  --purple: linear-gradient(180deg, #b35ff7 0%, #C484F3 100%);
+  --purple: #b35ff7;
   --pink: #FF919D;
   --white: #efefef;
   --green: #1fa85ad0;
   --blue: #125e94;
+  --blue-2: #178bc0;
 }
 
 * {
@@ -29,6 +30,12 @@ body {
 
 h1 {
   font-size: 1.7rem;
-  margin-bottom: 1.5rem;
   color: var(--white);
+}
+
+.header-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
 }

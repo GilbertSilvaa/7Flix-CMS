@@ -33,7 +33,7 @@
 .content svg {
   position: absolute;
   top: 0;
-  right: .5rem;
+  right: .6rem;
   height: 100%;
   background-color: var(--black);
   border-top: 1.5px solid #c8c8c8;

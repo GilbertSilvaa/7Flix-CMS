@@ -1,5 +1,8 @@
 export function SeriesView() {
   return (
-    <h1>Series</h1>
+    <div className="header-page">
+      <h1>Séries</h1>
+    </div>
+    
   )
 }

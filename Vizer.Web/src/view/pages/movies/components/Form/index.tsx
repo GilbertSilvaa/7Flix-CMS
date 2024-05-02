@@ -1,5 +1,5 @@
 import { RiArrowGoBackLine } from 'react-icons/ri'
-import { Input, ParentalRatingOptions } from '../../../../components'
+import { Button, Input, ParentalRatingOptions } from '../../../../components'
 import styles from './styles.module.css'
 
 interface IMovieFormProps {
@@ -21,33 +21,48 @@ export function MovieForm({ toBack }: IMovieFormProps) {
       </div>
 
       <form className={styles.form}>
-        <Input label="Título" isRequired/>
-        <Input 
-          label="Categoria" 
-          placeholder="ação, aventura, drama, terror..."
-          isRequired
-        /> 
-        <Input 
-          label="Nota Review" 
-          placeholder="7.5"
-          isRequired
-        /> 
-        <Input 
-          label="Ano Lançamento" 
-          placeholder="2020"
-          isRequired
-        /> 
+
+        <div className={styles.doubleInput}>
+          <Input label="Título" isRequired/>
+          <Input 
+            label="Categoria" 
+            placeholder="ação, aventura, drama, terror..."
+            isRequired
+          /> 
+        </div>
+
+        <div className={styles.doubleInput}>
+          <Input 
+            label="Nota Review" 
+            placeholder="7.5"
+            isRequired
+          />  
+          <Input 
+            label="Ano Lançamento" 
+            placeholder="2020"
+            isRequired
+          /> 
+        </div>
         <ParentalRatingOptions/>
-        <Input 
-          label="Poster (URL)" 
-          placeholder="https://www.imagem.jpg"
-          isRequired
-        />
-        <Input 
-          label="Banner (URL)" 
-          placeholder="https://www.imagem.jpg"
-          isRequired
-        />
+
+        <div className={styles.doubleInput}>
+          <Input 
+            label="Poster (URL)" 
+            placeholder="https://www.imagem.jpg"
+            isRequired
+          />
+          <Input 
+            label="Banner (URL)" 
+            placeholder="https://www.imagem.jpg"
+            isRequired
+          />
+        </div>
+
+        <div style={{ marginTop: '1rem' }}>
+          <Button color="var(--orange)">
+            Cadastrar
+          </Button>
+        </div>
       </form>
     </div>
   )

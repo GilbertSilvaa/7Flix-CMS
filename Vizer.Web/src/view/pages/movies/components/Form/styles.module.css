@@ -22,14 +22,15 @@
 }
 
 .form {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   width: 100%;
-  height: 90%;
-  max-width: 500px;
-  overflow: auto;
 
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
 
+.doubleInput {
+  display: flex;
+  gap: 2rem;
 }

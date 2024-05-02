@@ -33,7 +33,7 @@ export function ParentalRatingOptions() {
       <label>Classificação Indicativa</label>
       <div className={styles.options}>
         {PARENTAL_RATINGS.map((pr, index) => (
-          <div className={styles.option}>
+          <div className={styles.option} key={index}>
             <input 
               type="radio" 
               name="rating" 

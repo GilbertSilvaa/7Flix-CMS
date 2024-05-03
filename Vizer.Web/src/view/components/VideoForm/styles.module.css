@@ -1,0 +1,16 @@
+.content {
+  margin-top: .6rem;
+  margin-bottom: 0;
+}
+
+.content hr {
+  width: 100%;
+  border-top: 0.5px solid var(--white-2);
+  margin: .6rem 0;
+  margin-bottom: 1.25rem;
+}
+
+.doubleInput {
+  display: flex;
+  gap: 2rem;
+}

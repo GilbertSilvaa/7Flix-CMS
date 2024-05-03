@@ -25,7 +25,7 @@
   margin-bottom: .5rem;
 
   span {
-    color: #d31919;
+    color: var(--red);
   }
 }
 

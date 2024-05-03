@@ -12,6 +12,7 @@
   --green: #1fa85ad0;
   --blue: #125e94;
   --blue-2: #178bc0;
+  --red: #d31919;
 }
 
 * {
@@ -39,4 +40,31 @@ h1 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 3rem;
+}
+
+.double-input {
+  display: flex;
+  gap: 2rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: .5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: .5rem;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--gray); 
+  border-radius: .5rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--white-2); 
 }

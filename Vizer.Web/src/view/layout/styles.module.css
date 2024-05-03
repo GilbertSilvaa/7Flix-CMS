@@ -5,11 +5,11 @@
 }
 
 .main {
+  flex: 1;
   margin: 1.5rem;
   margin-left: 2rem;
   padding: 1.5rem;
   border-radius: 8px;
-  flex: 1;
   background-color: #ffffff0c;
   overflow: hidden;
 }

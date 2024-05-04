@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { Movie } from '../../../../../app/entities';
+import { movieService } from '../../../../../app/services/movieService';
 
 export function useMovieFormController() {
   const [formData, setFormData] = useState<Partial<Movie>>({
@@ -18,7 +19,14 @@ export function useMovieFormController() {
   
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
-    console.log(formData)
+    
+    try {
+      const response = await movieService.create(formData)
+      console.log(response)
+    }
+    catch (err) {
+      console.error(err)
+    }
   }
 
   return {

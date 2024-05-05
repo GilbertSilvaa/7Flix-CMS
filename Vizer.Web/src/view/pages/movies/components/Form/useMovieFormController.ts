@@ -1,8 +1,12 @@
 import { FormEvent, useState } from 'react';
 import { Movie } from '../../../../../app/entities';
+import { useToast } from '../../../../../app/hooks/useToast';
 import { movieService } from '../../../../../app/services/movieService';
 
 export function useMovieFormController() {
+  const toast = useToast()
+
+  const [successSubmit, setSuccessSubmit] = useState(false)
   const [formData, setFormData] = useState<Partial<Movie>>({
     parentalRating: 0,
     video: {
@@ -21,17 +25,19 @@ export function useMovieFormController() {
     e.preventDefault()
     
     try {
-      const response = await movieService.create(formData)
-      console.log(response)
+      await movieService.create(formData)
+      toast.success('Cadastro realizado com sucesso')
+      setSuccessSubmit(true)
     }
     catch (err) {
-      console.error(err)
+      toast.error('Ops! Houve um erro')
     }
   }
 
   return {
     handleSubmit: onSubmit,
     setFormValue,
-    formData
+    formData,
+    successSubmit
   }
 }

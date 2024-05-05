@@ -12,8 +12,11 @@ export function MovieForm({ toBack }: IMovieFormProps) {
   const { 
     setFormValue, 
     handleSubmit, 
-    formData 
+    formData, 
+    successSubmit
   } = useMovieFormController()
+
+  if (successSubmit) toBack()
 
   return (
     <div className={styles.content}>

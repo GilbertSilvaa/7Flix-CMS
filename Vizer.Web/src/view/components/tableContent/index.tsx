@@ -1,17 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaRegEye } from 'react-icons/fa';
 import { MdEdit, MdNavigateBefore, MdNavigateNext, MdSearch } from 'react-icons/md';
+import { IMovieGetAllResponse } from '../../../app/services/movieService/getAll';
 import { Input } from '../Input';
 import styles from './styles.module.css';
 
-interface ITableContentData {
-  id: string
-  title: string
-  registrationDate: Date
-}
-
 interface ITableContentProps {
-  data: ITableContentData[]
+  data: IMovieGetAllResponse[]
   handleView: (id: string) => void
   handleEdit: (id: string) => void
 }
@@ -24,6 +19,8 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
     setContent(data.filter(({ title }) => 
       title.toLowerCase().match(value.toLowerCase())))
   }
+
+  useEffect(() => setContent(data), [data])
 
   return (
     <div>
@@ -51,7 +48,7 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
             .map((params, index) => (
               <tr key={index}>
                 <td>{params.title}</td>
-                <td>{params.registrationDate.toLocaleDateString()}</td>
+                <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
                 <td>
                   <div className={styles.actions}>
                     <button 

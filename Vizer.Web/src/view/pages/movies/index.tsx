@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
 import { Button, TableContent } from '../../components'
 import { MovieForm } from './components/Form'
-import { DATA } from './data'
+import { useMoviesController } from './useMoviesController'
 
 export function MoviesView() {
+  const { data } = useMoviesController()
+
   const [isFormView, setIsFormView] = useState(false)
 
   if (isFormView)
@@ -20,11 +22,11 @@ export function MoviesView() {
         </Button>
       </div>
 
-      <TableContent 
-        data={DATA}
+      {data&&<TableContent 
+        data={data}
         handleEdit={id => console.log('editando: ', id)}
         handleView={id =>  console.log('visualizando: ', id)}
-      />
+      />}
     </div>
   )
 }

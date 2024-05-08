@@ -9,8 +9,11 @@ public class MovieService
 {
   private readonly MovieRepository _repository = new();
 
-  public async Task<IEnumerable<Movie>> Get()
-    => await _repository.GetAsync();
+  public async Task<IEnumerable<GetAllMovieResponseDto>> Get()
+  {
+    var response = await _repository.GetAsync();
+    return response.Select(GetAllMovieResponseDto.ToEntity);
+  }
 
   public async Task<Movie?> Get(string id)
   {

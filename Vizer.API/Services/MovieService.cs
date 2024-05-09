@@ -12,7 +12,9 @@ public class MovieService
   public async Task<IEnumerable<GetAllMovieResponseDto>> Get()
   {
     var response = await _repository.GetAsync();
-    return response.Select(GetAllMovieResponseDto.ToEntity);
+    return response
+      .Select(GetAllMovieResponseDto.ToEntity)
+      .OrderByDescending(m => m.DateCreated);
   }
 
   public async Task<Movie?> Get(string id)

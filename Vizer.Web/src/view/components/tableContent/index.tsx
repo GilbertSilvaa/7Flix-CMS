@@ -43,37 +43,43 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
           </tr>
         </thead>
         <tbody>
-          {content
-            .slice((currentPagination * 6), ((currentPagination * 6) + 6))
-            .map((params, index) => (
-              <tr key={index}>
-                <td>{params.title}</td>
-                <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
-                <td>
-                  <div className={styles.actions}>
-                    <button 
-                      onClick={() => handleView(params.id)} 
-                      style={{ background: 'var(--orange)' }}
-                    >
-                      <FaRegEye/>
-                    </button>
-                    <button 
-                      onClick={() => handleEdit(params.id)} 
-                      style={{ background: 'var(--blue)' }}
-                    >
-                      <MdEdit/>
-                    </button>
-                  </div>
-                </td>
+          { content.length
+            ? content
+              .slice((currentPagination * 6), ((currentPagination * 6) + 6))
+              .map((params, index) => (
+                <tr key={index}>
+                  <td>{params.title}</td>
+                  <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
+                  <td>
+                    <div className={styles.actions}>
+                      <button 
+                        onClick={() => handleView(params.id)} 
+                        style={{ background: 'var(--orange)' }}
+                      >
+                        <FaRegEye/>
+                      </button>
+                      <button 
+                        onClick={() => handleEdit(params.id)} 
+                        style={{ background: 'var(--blue)' }}
+                      >
+                        <MdEdit/>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            : <tr>
+                <td>Sem registros encontrados</td>
+                <td></td>
+                <td></td>
               </tr>
-            ))
           }
         </tbody>
       </table>
 
       <div className={styles.footer}>
           <button 
-            disabled={currentPagination === 0}
+            disabled={currentPagination <= 0}
             onClick={() => setCurrentPagination(prev => prev-1)}
           >
             <MdNavigateBefore/>
@@ -82,7 +88,7 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
             {currentPagination + 1} de {Math.ceil(content.length/6)}
           </span>
           <button 
-            disabled={currentPagination + 1 === Math.ceil(content.length/6)}
+            disabled={currentPagination + 1 >= Math.ceil(content.length/6)}
             onClick={() => setCurrentPagination(prev => prev+1)}
           >
             <MdNavigateNext/>

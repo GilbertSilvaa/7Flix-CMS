@@ -5,9 +5,9 @@ import { MovieForm } from './components/Form'
 import { useMoviesController } from './useMoviesController'
 
 export function MoviesView() {
-  const { data } = useMoviesController()
-
   const [isFormView, setIsFormView] = useState(false)
+
+  const { data } = useMoviesController(!isFormView)
 
   if (isFormView)
     return <MovieForm toBack={() => setIsFormView(false)}/>
@@ -22,11 +22,13 @@ export function MoviesView() {
         </Button>
       </div>
 
-      {data&&<TableContent 
-        data={data}
-        handleEdit={id => console.log('editando: ', id)}
-        handleView={id =>  console.log('visualizando: ', id)}
-      />}
+      {data && 
+        <TableContent 
+          data={data}
+          handleEdit={id => console.log('editando: ', id)}
+          handleView={id =>  console.log('visualizando: ', id)}
+        />
+      }
     </div>
   )
 }

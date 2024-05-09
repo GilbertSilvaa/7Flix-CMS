@@ -12,7 +12,7 @@ export function MovieForm({ toBack }: IMovieFormProps) {
   const { 
     setFormValue, 
     handleSubmit, 
-    loading,
+    isLoading,
     formData, 
     successSubmit
   } = useMovieFormController()
@@ -89,7 +89,7 @@ export function MovieForm({ toBack }: IMovieFormProps) {
         />
 
         <div style={{ marginTop: '1rem' }}>
-          <Button color="var(--green)" isLoading={loading}>
+          <Button color="var(--green)" isLoading={isLoading}>
             <LuSaveAll/>
             <span>Cadastrar</span>
           </Button>

@@ -22,8 +22,8 @@ export function Select({ label, isRequired, options, ...props }: ISelectProps) {
       }
 
       <select required={isRequired} {...props}>
-        {options.map(o => 
-          <option value={o.value}>{o.label}</option>)
+        {options.map((o, index) => 
+          <option key={index} value={o.value}>{o.label}</option>)
         }
       </select>
     </div>

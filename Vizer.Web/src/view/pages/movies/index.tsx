@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
-import { Button, TableContent } from '../../components'
+import { Button, Loading, TableContent } from '../../components'
 import { MovieForm } from './components/Form'
 import { useMoviesController } from './useMoviesController'
 
 export function MoviesView() {
   const [isFormView, setIsFormView] = useState(false)
 
-  const { data } = useMoviesController(!isFormView)
+  const { data, isLoading } = useMoviesController(!isFormView)
 
   if (isFormView)
     return <MovieForm toBack={() => setIsFormView(false)}/>
@@ -24,7 +24,8 @@ export function MoviesView() {
         </Button>
       </div>
 
-      {data && 
+      {isLoading && <Loading/>}
+      {(!isLoading && data) && 
         <TableContent 
           data={data}
           handleEdit={id => console.log('editando: ', id)}

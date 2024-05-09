@@ -4,10 +4,17 @@ import { IMovieGetAllResponse } from '../../../app/services/movieService/getAll'
 
 export function useMoviesController(isReload?: boolean) {
   const [movies, setMovies] = useState<IMovieGetAllResponse[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   async function getMovies() {
-    const response = await movieService.getAll()
-    setMovies(response)
+    try {
+      setIsLoading(true)
+      const response = await movieService.getAll()
+      setMovies(response)
+    }
+    finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -15,6 +22,7 @@ export function useMoviesController(isReload?: boolean) {
   }, [isReload])
 
   return {
+    isLoading,
     data: movies
   }
 }

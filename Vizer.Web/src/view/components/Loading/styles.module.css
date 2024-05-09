@@ -1,0 +1,28 @@
+.content {
+  display: flex;
+  gap: 1rem;  
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 42%;
+  left: 50%;
+}
+
+.content h1 {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.content .spinner {
+  animation: spinner-rotation 1.25s linear infinite;
+}
+
+@keyframes spinner-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

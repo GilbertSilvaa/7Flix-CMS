@@ -43,7 +43,7 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
           </tr>
         </thead>
         <tbody>
-          { content.length
+          {content.length
             ? content
               .slice((currentPagination * 6), ((currentPagination * 6) + 6))
               .map((params, index) => (

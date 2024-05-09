@@ -16,6 +16,10 @@
   &::placeholder {
     color: #bbbbbb;
   }
+
+  &:focus {
+    border-color: #fff;
+  }
 }
 
 .content label {

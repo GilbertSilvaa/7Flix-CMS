@@ -26,7 +26,7 @@ export function Input({
         <input 
           placeholder={placeholder || 'digite aqui...'} 
           required={isRequired} 
-          { ...props }
+          {...props}
         />
         {Icon && <Icon/>}
       </div>

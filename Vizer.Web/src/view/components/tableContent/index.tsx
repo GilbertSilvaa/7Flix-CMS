@@ -69,7 +69,7 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
                 </tr>
               ))
             : <tr>
-                <td>Sem registros encontrados</td>
+                <td style={{padding: '1rem'}}>Sem registros encontrados</td>
                 <td></td>
                 <td></td>
               </tr>

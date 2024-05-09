@@ -1,5 +1,7 @@
+import { VIDEO_FORMATS } from '../../../app/config/constants'
 import { Video } from '../../../app/entities'
 import { Input } from '../Input'
+import { Select } from '../Select'
 import styles from './styles.module.css'
 
 interface IVideoFormProps {
@@ -29,9 +31,9 @@ export function VideoForm({
       />
       
       <div className="double-input" style={{marginTop: '1rem'}}>
-        <Input 
+        <Select 
           label="Stream Format" 
-          placeholder="MP4"
+          options={VIDEO_FORMATS.map(f => ({label: f, value: f}))} 
           isRequired
           onChange={e => setFormValue('streamFormat', e.target.value)}
         />

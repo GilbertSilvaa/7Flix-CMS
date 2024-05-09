@@ -21,3 +21,16 @@
     cursor: not-allowed;
   }
 }
+
+.btn .spinner {
+  animation: spinner-rotation 1.25s linear infinite;
+}
+
+@keyframes spinner-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

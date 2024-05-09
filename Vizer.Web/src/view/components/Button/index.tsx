@@ -18,7 +18,7 @@ export function Button({ children, color, isLoading, ...props }: IButtonProps) {
     >
       {isLoading
         ? <>
-          <ImSpinner8 size={20}/>
+          <ImSpinner8 size={20} className={styles.spinner}/>
           <span>Carregando...</span>
           </> 
         : children

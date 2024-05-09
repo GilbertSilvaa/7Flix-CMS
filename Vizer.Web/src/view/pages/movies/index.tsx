@@ -17,8 +17,7 @@ export function MoviesView() {
       <div className="header-page">
         <h1>Filmes</h1>
         <Button color="var(--blue-2)" onClick={() => setIsFormView(true)}>
-          <FaPlus/>
-          <span>Adicionar</span>
+          <FaPlus/><span>Adicionar</span>
         </Button>
       </div>
 

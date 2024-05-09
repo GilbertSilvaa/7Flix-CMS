@@ -1,5 +1,5 @@
 import { Movie } from '../../entities'
-import { httpClient } from '../httpClient'
+import httpClient from '../httpClient'
 
 type TMovieCreateParams = Partial<Movie>
 

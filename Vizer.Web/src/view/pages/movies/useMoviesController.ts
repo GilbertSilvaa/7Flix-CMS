@@ -9,8 +9,7 @@ export function useMoviesController(isReload?: boolean) {
   async function getMovies() {
     try {
       setIsLoading(true)
-      const response = await movieService.getAll()
-      setMovies(response)
+      setMovies(await movieService.getAll())
     }
     finally {
       setIsLoading(false)
@@ -18,7 +17,7 @@ export function useMoviesController(isReload?: boolean) {
   }
 
   useEffect(() => {
-    isReload && getMovies()
+    getMovies()
   }, [isReload])
 
   return {

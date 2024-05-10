@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react'
-import { ImSpinner8 } from 'react-icons/im'
+import { Loading } from '../Loading'
 import styles from './styles.module.css'
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>  {
@@ -17,10 +17,7 @@ export function Button({ children, color, isLoading, ...props }: IButtonProps) {
       { ...props }
     >
       {isLoading
-        ? <>
-          <ImSpinner8 size={20} className={styles.spinner}/>
-          <span>Carregando...</span>
-          </> 
+        ? <Loading/>
         : children
       }
     </button>

@@ -5,7 +5,7 @@ import styles from './styles.module.css'
 import { useMovieFormController } from './useMovieFormController'
 
 interface IMovieFormProps {
-  toBack: () => void
+  toBack: (isSubmit?: boolean) => void
 }
 
 export function MovieForm({ toBack }: IMovieFormProps) {
@@ -17,14 +17,14 @@ export function MovieForm({ toBack }: IMovieFormProps) {
     successSubmit
   } = useMovieFormController()
 
-  if (successSubmit) toBack()
+  if (successSubmit) toBack(true)
 
   return (
     <div className={styles.content}>
       <div className={styles.header}>
         <button 
           className={styles.btnBack} 
-          onClick={toBack}
+          onClick={() => toBack(false)}
         >
           <RiArrowGoBackLine/>
         </button>

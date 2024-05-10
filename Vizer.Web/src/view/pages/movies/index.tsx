@@ -1,16 +1,24 @@
 import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
-import { Button, Loading, TableContent } from '../../components'
+import { Button, TableContent } from '../../components'
 import { MovieForm } from './components/Form'
 import { useMoviesController } from './useMoviesController'
 
 export function MoviesView() {
-  const [isFormView, setIsFormView] = useState(false)
+  const [formView, setFormView] = useState({
+    open: false,
+    isSubmit: false
+  })
 
-  const { data, isLoading } = useMoviesController(!isFormView)
+  const { isLoading, data } = useMoviesController(formView.isSubmit)
 
-  if (isFormView)
-    return <MovieForm toBack={() => setIsFormView(false)}/>
+  if (formView.open)
+    return <MovieForm 
+      toBack={isSubmit => setFormView({
+        open: false, 
+        isSubmit: Boolean(isSubmit)
+      })}
+    />
 
   return (
     <div>
@@ -18,20 +26,21 @@ export function MoviesView() {
         <h1>Filmes</h1>
         <Button 
           color="var(--blue-2)" 
-          onClick={() => setIsFormView(true)}
+          onClick={() => setFormView({
+            open: true,
+            isSubmit: false
+          })}
         >
           <FaPlus/><span>Adicionar</span>
         </Button>
       </div>
 
-      {isLoading && <Loading/>}
-      {(!isLoading && data) && 
-        <TableContent 
-          data={data}
-          handleEdit={id => console.log('editando: ', id)}
-          handleView={id =>  console.log('visualizando: ', id)}
-        />
-      }
+      <TableContent 
+        data={data}
+        isLoading={isLoading}
+        handleEdit={id => console.log('editando: ', id)}
+        handleView={id =>  console.log('visualizando: ', id)}
+      />
     </div>
   )
 }

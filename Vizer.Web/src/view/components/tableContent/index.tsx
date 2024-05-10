@@ -3,15 +3,17 @@ import { FaRegEye } from 'react-icons/fa';
 import { MdEdit, MdNavigateBefore, MdNavigateNext, MdSearch } from 'react-icons/md';
 import { IMovieGetAllResponse } from '../../../app/services/movieService/getAll';
 import { Input } from '../Input';
+import { Loading } from '../Loading';
 import styles from './styles.module.css';
 
 interface ITableContentProps {
   data: IMovieGetAllResponse[]
+  isLoading?: boolean
   handleView: (id: string) => void
   handleEdit: (id: string) => void
 }
 
-export function TableContent({ data, handleEdit, handleView }: ITableContentProps) {
+export function TableContent({ data, isLoading, handleEdit, handleView }: ITableContentProps) {
   const [content, setContent] = useState(data)
   const [currentPagination, setCurrentPagination] = useState(0)
 
@@ -43,36 +45,39 @@ export function TableContent({ data, handleEdit, handleView }: ITableContentProp
           </tr>
         </thead>
         <tbody>
-          {content.length
-            ? content
-              .slice((currentPagination * 6), ((currentPagination * 6) + 6))
-              .map((params, index) => (
-                <tr key={index}>
-                  <td>{params.title}</td>
-                  <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
-                  <td>
-                    <div className={styles.actions}>
-                      <button 
-                        onClick={() => handleView(params.id)} 
-                        style={{ background: 'var(--orange)' }}
-                      >
-                        <FaRegEye/>
-                      </button>
-                      <button 
-                        onClick={() => handleEdit(params.id)} 
-                        style={{ background: 'var(--blue)' }}
-                      >
-                        <MdEdit/>
-                      </button>
-                    </div>
-                  </td>
+          {isLoading 
+            ? <div style={{width: '130%', padding: '1rem'}}><Loading/></div>
+            : (content.length
+              ? content
+                .slice((currentPagination * 6), ((currentPagination * 6) + 6))
+                .map((params, index) => (
+                  <tr key={index}>
+                    <td>{params.title}</td>
+                    <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
+                    <td>
+                      <div className={styles.actions}>
+                        <button 
+                          onClick={() => handleView(params.id)} 
+                          style={{ background: 'var(--orange)' }}
+                        >
+                          <FaRegEye/>
+                        </button>
+                        <button 
+                          onClick={() => handleEdit(params.id)} 
+                          style={{ background: 'var(--blue)' }}
+                        >
+                          <MdEdit/>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              : <tr>
+                  <td style={{padding: '1rem'}}>Sem registros encontrados</td>
+                  <td></td>
+                  <td></td>
                 </tr>
-              ))
-            : <tr>
-                <td style={{padding: '1rem'}}>Sem registros encontrados</td>
-                <td></td>
-                <td></td>
-              </tr>
+            )
           }
         </tbody>
       </table>

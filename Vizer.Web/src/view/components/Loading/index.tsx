@@ -4,8 +4,8 @@ import styles from './styles.module.css'
 export function Loading() {
   return (
     <div className={styles.content}>
-      <ImSpinner8 size={30} className={styles.spinner} />
-      <h1>Carregando...</h1>
+      <ImSpinner8 size={20} className={styles.spinner} />
+      <span>Carregando...</span>
     </div>
   )
 }

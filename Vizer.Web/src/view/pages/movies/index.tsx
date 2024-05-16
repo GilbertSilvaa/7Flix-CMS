@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
 import { Button, TableContent } from '../../components'
+import { Modal } from '../../components/Modal'
 import { MovieForm } from './components/Form'
 import { useMoviesController } from './useMoviesController'
 
 export function MoviesView() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [formView, setFormView] = useState({
     open: false,
     isSubmit: false
@@ -39,8 +41,19 @@ export function MoviesView() {
         data={data}
         isLoading={isLoading}
         handleEdit={id => console.log('editando: ', id)}
-        handleView={id =>  console.log('visualizando: ', id)}
+        handleView={id =>  setIsModalOpen(true)}
       />
+
+      {isModalOpen && 
+        <Modal
+          title='Filme' 
+          handleClose={() => setIsModalOpen(false)}
+        >
+          <div>
+            
+          </div>
+        </Modal>
+      }
     </div>
   )
 }

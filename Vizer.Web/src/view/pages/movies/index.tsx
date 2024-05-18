@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
 import { Button, TableContent } from '../../components'
 import { Modal } from '../../components/Modal'
@@ -6,21 +5,19 @@ import { MovieForm } from './components/Form'
 import { useMoviesController } from './useMoviesController'
 
 export function MoviesView() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [formView, setFormView] = useState({
-    open: false,
-    isSubmit: false
-  })
+  const { 
+    data, 
+    isLoading, 
+    isMovieModalOpen,
+    isMovieFormOpen,
+    handleMovieModalClose,
+    handleMovieModalOpen,
+    handleMovieFormOpen,
+    handleMovieFormClose
+  } = useMoviesController()
 
-  const { isLoading, data } = useMoviesController(formView.isSubmit)
-
-  if (formView.open)
-    return <MovieForm 
-      toBack={isSubmit => setFormView({
-        open: false, 
-        isSubmit: Boolean(isSubmit)
-      })}
-    />
+  if (isMovieFormOpen)
+    return <MovieForm toBack={handleMovieFormClose} />
 
   return (
     <div>
@@ -28,10 +25,7 @@ export function MoviesView() {
         <h1>Filmes</h1>
         <Button 
           color="var(--blue-2)" 
-          onClick={() => setFormView({
-            open: true,
-            isSubmit: false
-          })}
+          onClick={handleMovieFormOpen}
         >
           <FaPlus/><span>Adicionar</span>
         </Button>
@@ -41,13 +35,13 @@ export function MoviesView() {
         data={data}
         isLoading={isLoading}
         handleEdit={id => console.log('editando: ', id)}
-        handleView={id =>  setIsModalOpen(true)}
+        handleView={handleMovieModalOpen}
       />
 
-      {isModalOpen && 
+      {isMovieModalOpen && 
         <Modal
           title='Filme' 
-          handleClose={() => setIsModalOpen(false)}
+          handleClose={handleMovieModalClose}
         >
           <div>
             

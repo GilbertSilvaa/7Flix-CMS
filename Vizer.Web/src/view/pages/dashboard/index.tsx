@@ -54,7 +54,7 @@ export function DashboardView() {
         <Bar 
           data={{
             labels: ['Qtde. Conteúdos'],
-            datasets: CARDS
+            datasets: CARDS.concat(CARDS)
               .filter((c, index) => index != CARDS.length - 1)
               .map(c => ({
                 label: c.label,

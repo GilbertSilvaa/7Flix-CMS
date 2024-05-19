@@ -1,13 +1,14 @@
 import { FaPlus } from 'react-icons/fa6'
 import { Button, TableContent } from '../../components'
-import { Modal } from '../../components/Modal'
-import { MovieForm } from './components/Form'
+import { MovieForm } from './components/MovieForm'
+import { MovieModal } from './components/MovieModal'
 import { useMoviesController } from './useMoviesController'
 
 export function MoviesView() {
   const { 
     data, 
     isLoading, 
+    movieSelected,
     isMovieModalOpen,
     isMovieFormOpen,
     handleMovieModalClose,
@@ -39,14 +40,10 @@ export function MoviesView() {
       />
 
       {isMovieModalOpen && 
-        <Modal
-          title='Filme' 
+        <MovieModal 
+          data={movieSelected} 
           handleClose={handleMovieModalClose}
-        >
-          <div>
-            
-          </div>
-        </Modal>
+        />
       }
     </div>
   )

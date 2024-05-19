@@ -1,0 +1,6 @@
+.content {
+  background-color: red;
+  width: min-content;
+  padding: .25rem;
+  border-radius: .25rem;
+}

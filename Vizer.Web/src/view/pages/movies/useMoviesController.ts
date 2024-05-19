@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { Movie } from '../../../app/entities'
 import { movieService } from '../../../app/services/movieService'
 import { IMovieGetAllResponse } from '../../../app/services/movieService/getAll'
 
 export function useMoviesController() {
   const [movies, setMovies] = useState<IMovieGetAllResponse[]>([])
+  const [movieSelected, setMovieSelected] = useState<Movie>()
   const [isReload, setIsReload] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isMovieModalOpen, setIsMovieModalOpen] = useState(false)
@@ -11,12 +13,12 @@ export function useMoviesController() {
 
   async function handleMovieModalOpen(id: string) {
     setIsMovieModalOpen(true)
-    
-    const response = await movieService.get(id)
-    console.log(response)
+    setMovieSelected(await movieService.get(id))
   } 
-  const handleMovieModalClose = () =>
+  function handleMovieModalClose() {
     setIsMovieModalOpen(false)
+    setMovieSelected(undefined)
+  }
 
   function handleMovieFormOpen() {
     setIsMovieFormOpen(true)
@@ -43,6 +45,7 @@ export function useMoviesController() {
   return {
     isLoading,
     data: movies,
+    movieSelected,
     isMovieModalOpen,
     isMovieFormOpen,
     handleMovieModalClose,

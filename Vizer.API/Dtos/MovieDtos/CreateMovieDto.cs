@@ -6,6 +6,7 @@ namespace Vizer.API.Dtos.MovieDtos;
 public class CreateMovieDto
 {
   public string Title { get; set; } = string.Empty;
+  public string Synopsis { get; set; } = string.Empty;
   public string Category { get; set; } = string.Empty;
   public string Banner { get; set; } = string.Empty;
   public string Poster { get; set; } = string.Empty;
@@ -19,6 +20,7 @@ public class CreateMovieDto
     return new Movie
     {
       Title = Title,
+      Synopsis = Synopsis,
       Video = Video,
       Banner = Banner,
       Poster = Poster,

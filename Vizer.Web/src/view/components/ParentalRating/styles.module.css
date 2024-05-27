@@ -1,6 +1,6 @@
 .content {
   background-color: red;
   width: min-content;
-  padding: .25rem;
+  padding: .15rem .3rem;
   border-radius: .25rem;
 }

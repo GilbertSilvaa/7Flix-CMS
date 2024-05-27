@@ -6,10 +6,11 @@
 }
 
 .category {
-  background-color: #384b62;
+  background-color: var(--gray-2);
   border-radius: .25rem;
   padding: 0.1rem .5rem;
   width: min-content;
+  max-width: 20%;
 }
 
 .poster {
@@ -23,4 +24,11 @@
   align-items: center;
   gap: .6rem;
   margin-bottom: .75rem;
+}
+
+.synopsis {
+  font-size: .9rem;
+  line-height: 1.4rem;
+  color: var(--white-2);
+  margin-bottom: 1.5rem;
 }

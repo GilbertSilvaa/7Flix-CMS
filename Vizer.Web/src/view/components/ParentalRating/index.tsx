@@ -1,12 +1,12 @@
 import styles from './styles.module.css'
 
 const PARENTAL_RATINGS_COLORS = {
-  'L': '#26985a',
-  '10': '#148bce',
-  '12': '#ceab14',
-  '14': '#c97d07',
-  '16': '#b71f1f',
-  '18': '#2d2525'
+  0: { label: 'L', color: '#26985a' },
+  10: { label: '10', color: '#148bce' },
+  12: { label: '12', color: '#ceab14' },
+  14: { label: '14', color: '#c97d07' },
+  16: { label: '16', color: '#b71f1f' },
+  18: { label: '18', color: '#2d2525' }
 }
 
 interface IParentalRatingProps {
@@ -17,9 +17,9 @@ export function ParentalRating({ pr }: IParentalRatingProps) {
   return (
     <div 
       className={styles.content}
-      style={{ backgroundColor: PARENTAL_RATINGS_COLORS[pr] }}
+      style={{ backgroundColor: PARENTAL_RATINGS_COLORS[pr].color }}
     >
-      { pr }
+      { PARENTAL_RATINGS_COLORS[pr].label }
     </div>
   )
 }

@@ -10,6 +10,7 @@ export function useMoviesController() {
   const [isLoading, setIsLoading] = useState(false)
   const [isMovieModalOpen, setIsMovieModalOpen] = useState(false)
   const [isMovieFormOpen, setIsMovieFormOpen] = useState(false)
+  const [movieEditId, setMovieEditId] = useState<string>()
 
   async function handleMovieModalOpen(id: string) {
     setIsMovieModalOpen(true)
@@ -20,11 +21,13 @@ export function useMoviesController() {
     setMovieSelected(undefined)
   }
 
-  function handleMovieFormOpen() {
+  function handleMovieFormOpen(id?: string) {
+    setMovieEditId(id)
     setIsMovieFormOpen(true)
   }
   function handleMovieFormClose(isReloadData?: boolean) {
     setIsMovieFormOpen(false)
+    setMovieEditId(undefined)
     setIsReload(!!isReloadData)
   }
   
@@ -46,6 +49,7 @@ export function useMoviesController() {
     isLoading,
     data: movies,
     movieSelected,
+    movieEditId,
     isMovieModalOpen,
     isMovieFormOpen,
     handleMovieModalClose,

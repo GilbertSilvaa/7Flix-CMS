@@ -27,6 +27,7 @@ export function VideoForm({
         label="URL" 
         placeholder="https://cdn.example.com/video.mp4"
         isRequired
+        value={videoData.url}
         onChange={e => setFormValue('url', e.target.value)}
       />
       
@@ -35,6 +36,7 @@ export function VideoForm({
           label="Stream Format" 
           options={VIDEO_FORMATS.map(f => ({label: f, value: f}))} 
           isRequired
+          value={videoData.streamFormat}
           onChange={e => setFormValue('streamFormat', e.target.value)}
         />
 
@@ -43,6 +45,7 @@ export function VideoForm({
           type="tel"
           placeholder="7200s"
           isRequired
+          value={videoData.duration || ''}
           onChange={e => setFormValue('duration', parseInt(e.target.value))}
         />
       </div>

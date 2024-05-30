@@ -11,9 +11,10 @@ const PARENTAL_RATINGS = [
 
 interface IParentalRatingOptionsProps {
   onSelect: (value: number) => void
+  defaultSeleted?: number 
 }
 
-export function ParentalRatingOptions({ onSelect }: IParentalRatingOptionsProps) {
+export function ParentalRatingOptions({ defaultSeleted, onSelect }: IParentalRatingOptionsProps) {
   return (
     <div className={styles.content}>
       <label>Classificação Indicativa</label>
@@ -25,7 +26,7 @@ export function ParentalRatingOptions({ onSelect }: IParentalRatingOptionsProps)
               type="radio" 
               name="rating" 
               value={pr.value} 
-              defaultChecked={index == 0}
+              checked={defaultSeleted == pr.value}
               onChange={e => onSelect(parseInt(e.target.value))}
             />
             <label htmlFor={`p__rating_${index}`}>{ pr.label }</label>

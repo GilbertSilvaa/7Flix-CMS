@@ -9,7 +9,6 @@ interface IMovieModalProps {
 }
 
 export function MovieModal({ data, handleClose }: IMovieModalProps) {
-  console.log(data) 
   return (
     <Modal 
       title={data?.title || ''} 
@@ -31,7 +30,7 @@ export function MovieModal({ data, handleClose }: IMovieModalProps) {
             <FaStar/><span>{data?.review}</span>
           </div>
 
-          <p className={styles.synopsis}>{data?.synopsis}</p>
+          <p className={styles.synopsis}>{data?.synopsis || 'Sem descrição'}</p>
 
           {data?.video && <VideoDetails video={data?.video}/>}
         </div>

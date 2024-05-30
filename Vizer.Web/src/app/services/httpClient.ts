@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { sleep } from '../utils/sleep'
+import { sleep } from '../utils'
 
 const httpClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL

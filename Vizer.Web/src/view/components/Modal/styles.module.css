@@ -13,12 +13,13 @@
 }
 
 .content .modal {
-  width: 55%;
+  width: 56%;
   max-width: 850px;
-  height: 85%;
+  height: auto;
+  min-height: 480px;
   background-color: var(--black-3);
   border-radius: 1rem;
-  padding: 0 1.25rem;
+  padding: .5rem 1.5rem;
 }
 
 .content .header {
@@ -26,6 +27,7 @@
   justify-content: space-between;
   align-items: center;
   padding: .75rem 0;
+  margin-bottom: .75rem;
 }
 
 .content .header button {

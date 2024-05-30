@@ -1,8 +1,6 @@
 import { FaStar } from 'react-icons/fa'
 import { Movie } from '../../../../../app/entities'
-import { Modal } from '../../../../components/Modal'
-import { ParentalRating } from '../../../../components/ParentalRating'
-import { VideoDetails } from '../../../../components/VideoDetails'
+import { Modal, ParentalRating, VideoDetails } from '../../../../components'
 import styles from './styles.module.css'
 
 interface IMovieModalProps {

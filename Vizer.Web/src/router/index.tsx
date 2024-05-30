@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Toast } from '../view/components/Toast';
+import { Toast } from '../view/components/';
 import { Layout } from '../view/layout';
 import { DashboardView } from '../view/pages/dashboard';
 import { MoviesView } from '../view/pages/movies';

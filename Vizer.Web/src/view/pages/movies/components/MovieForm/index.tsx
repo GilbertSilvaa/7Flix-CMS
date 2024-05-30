@@ -1,6 +1,6 @@
 import { LuSaveAll } from 'react-icons/lu'
 import { RiArrowGoBackLine } from 'react-icons/ri'
-import { Button, Input, ParentalRatingOptions, VideoForm } from '../../../../components'
+import { Button, Input, ParentalRatingOptions, TextArea, VideoForm } from '../../../../components'
 import styles from './styles.module.css'
 import { useMovieFormController } from './useMovieFormController'
 
@@ -47,6 +47,11 @@ export function MovieForm({ toBack }: IMovieFormProps) {
             onChange={e => setFormValue('category', e.target.value)} 
           /> 
         </div>
+
+        <TextArea 
+          label="Sinopse"
+          isRequired
+        />
 
         <div className="double-input">
           <Input 

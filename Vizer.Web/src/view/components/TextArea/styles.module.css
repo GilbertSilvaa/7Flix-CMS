@@ -1,0 +1,37 @@
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content textarea {
+  width: 100%;
+  min-height: 80px;
+  color: var(--white);  
+  background-color: var(--black);
+  font-size: 1rem;
+  padding: .6rem 1rem;
+  border-radius: .6rem;
+  border: 1.5px solid var(--white-2);
+
+  resize: vertical;
+
+  &::placeholder {
+    color: #bbbbbb;
+  }
+
+  &:focus {
+    border-color: #fff;
+  }
+}
+
+.content label {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: .5rem;
+
+  span {
+    color: var(--red);
+  }
+}

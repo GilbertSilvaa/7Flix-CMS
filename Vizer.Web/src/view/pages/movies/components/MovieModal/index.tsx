@@ -28,7 +28,7 @@ export function MovieModal({ data, handleClose }: IMovieModalProps) {
               </div>
               
               <div className={styles.flex}>
-                <FaStar/><span>{data?.review}</span>
+                <FaStar/><span>{data?.review.toFixed(1)}</span>
               </div>
 
               <p className={styles.synopsis}>{data?.synopsis || 'Sem descrição'}</p>

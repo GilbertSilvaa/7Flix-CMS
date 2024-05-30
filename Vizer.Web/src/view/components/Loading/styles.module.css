@@ -5,10 +5,6 @@
   align-items: center;
 }
 
-.content span {
-  font-size: 1rem;
-}
-
 .content .spinner {
   animation: spinner-rotation 1.25s linear infinite;
 }

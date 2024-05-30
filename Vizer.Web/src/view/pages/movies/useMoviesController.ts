@@ -33,6 +33,7 @@ export function useMoviesController() {
   
   async function getMovies() {
     try {
+      setIsReload(false)
       setIsLoading(true)
       setMovies(await movieService.getAll())
     }

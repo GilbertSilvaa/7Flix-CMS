@@ -22,6 +22,7 @@
   padding: .5rem 1.5rem;
   
   position: relative;
+  animation: drop 1.4s ease forwards;
 }
 
 .content .header {
@@ -42,4 +43,9 @@
   &:hover {
     opacity: .5;
   }
+}
+
+@keyframes drop{
+  0% { transform: translateY(-90vh) }
+  100% { transform: translateY(0) }
 }

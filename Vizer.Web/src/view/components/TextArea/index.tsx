@@ -6,7 +6,7 @@ interface ITextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   isRequired?: boolean
 }
 
-export function TextArea({ label, placeholder, isRequired }: ITextAreaProps) {
+export function TextArea({ label, placeholder, isRequired, ...props }: ITextAreaProps) {
   return (
     <div className={styles.content}>
       {label && 
@@ -17,6 +17,7 @@ export function TextArea({ label, placeholder, isRequired }: ITextAreaProps) {
       <textarea 
         placeholder={placeholder || 'digite aqui...'}
         required={isRequired}
+        {...props}
         ></textarea>
     </div>
   )

@@ -51,6 +51,7 @@ export function MovieForm({ toBack }: IMovieFormProps) {
         <TextArea 
           label="Sinopse"
           isRequired
+          onChange={e => setFormValue('synopsis', e.target.value)} 
         />
 
         <div className="double-input">

@@ -6,7 +6,7 @@
 
 .content textarea {
   width: 100%;
-  min-height: 80px;
+  min-height: 95px;
   color: var(--white);  
   background-color: var(--black);
   font-size: 1rem;

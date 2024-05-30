@@ -1,0 +1,30 @@
+.content {
+  width: 100%;
+  background-color: var(--gray-2);
+  border-radius: .5rem;
+  padding: .8rem .75rem;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.content span {
+  flex: 1;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content button {
+  width: auto;
+  border-radius: .25rem;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

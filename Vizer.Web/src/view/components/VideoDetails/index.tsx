@@ -1,6 +1,6 @@
 import { FaClock, FaPhotoVideo } from 'react-icons/fa'
-
 import { Video } from '../../../app/entities'
+import { CopyLink } from '../CopyLink'
 import styles from './styles.module.css'
 
 interface IVideoDetailsProps {
@@ -10,7 +10,7 @@ interface IVideoDetailsProps {
 export function VideoDetails({ video }: IVideoDetailsProps) {
   return (
     <div className={styles.content}>
-      <p>{ video.url }</p>
+      <CopyLink link={video.url} />
       <div className={styles.info}>
         <FaClock/> <span>2h 20min</span> 
       </div>

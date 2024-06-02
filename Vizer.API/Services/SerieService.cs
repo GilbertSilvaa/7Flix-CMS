@@ -9,8 +9,13 @@ public class SerieService
 {
   private readonly SerieRepository _repository = new();
 
-  public async Task<IEnumerable<Serie>> Get()
-    => await _repository.GetAsync();
+  public async Task<IEnumerable<GetAllSerieResponseDto>> Get()
+  {
+    var response = await _repository.GetAsync();
+    return response
+      .Select(GetAllSerieResponseDto.ToEntity)
+      .OrderByDescending(s => s.DateCreated);
+  }
 
   public async Task<Serie?> Get(string id)
   {

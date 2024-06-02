@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
 import { FaRegEye } from 'react-icons/fa';
 import { MdEdit, MdNavigateBefore, MdNavigateNext, MdSearch } from 'react-icons/md';
-import { IMovieGetAllResponse } from '../../../app/services/movieService/getAll';
 import { Input } from '../Input';
 import { Loading } from '../Loading';
 import styles from './styles.module.css';
 
+interface ITableContentData {
+  id: string
+  title: string
+  dateCreated: string
+}
+
 interface ITableContentProps {
-  data: IMovieGetAllResponse[]
+  data: ITableContentData[]
   isLoading?: boolean
   handleView: (id: string) => void
   handleEdit: (id: string) => void

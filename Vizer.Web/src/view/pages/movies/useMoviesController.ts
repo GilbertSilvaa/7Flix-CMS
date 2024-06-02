@@ -3,6 +3,12 @@ import { Movie } from '../../../app/entities'
 import { movieService } from '../../../app/services/movieService'
 import { IMovieGetAllResponse } from '../../../app/services/movieService/getAll'
 
+interface IToggleMovieFormParams {
+  id?: string
+  isReloadData?: boolean
+  state: 'open' | 'close'
+}
+
 export function useMoviesController() {
   const [movies, setMovies] = useState<IMovieGetAllResponse[]>([])
   const [movieSelected, setMovieSelected] = useState<Movie>()
@@ -12,23 +18,26 @@ export function useMoviesController() {
   const [isMovieFormOpen, setIsMovieFormOpen] = useState(false)
   const [movieEditId, setMovieEditId] = useState<string>()
 
-  async function handleMovieModalOpen(id: string) {
-    setIsMovieModalOpen(true)
-    setMovieSelected(await movieService.get(id))
-  } 
-  function handleMovieModalClose() {
+  async function toggleMovieModal(id?: string) { 
+    if (id) {
+      setIsMovieModalOpen(true)
+      setMovieSelected(await movieService.get(id))
+      return
+    }
     setIsMovieModalOpen(false)
     setMovieSelected(undefined)
   }
 
-  function handleMovieFormOpen(id?: string) {
-    setMovieEditId(id)
-    setIsMovieFormOpen(true)
-  }
-  function handleMovieFormClose(isReloadData?: boolean) {
+  async function toggleMovieForm(params: IToggleMovieFormParams) 
+  {  
+    if (params.state === 'open') {
+      setMovieEditId(params.id)
+      setIsMovieFormOpen(true)
+      return
+    }
     setIsMovieFormOpen(false)
     setMovieEditId(undefined)
-    setIsReload(!!isReloadData)
+    setIsReload(!!params.isReloadData)
   }
   
   async function getMovies() {
@@ -53,9 +62,7 @@ export function useMoviesController() {
     movieEditId,
     isMovieModalOpen,
     isMovieFormOpen,
-    handleMovieModalClose,
-    handleMovieModalOpen,
-    handleMovieFormOpen,
-    handleMovieFormClose
+    toggleMovieForm,
+    toggleMovieModal
   }
 }

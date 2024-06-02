@@ -12,16 +12,17 @@ export function MoviesView() {
     movieEditId,
     isMovieModalOpen,
     isMovieFormOpen,
-    handleMovieModalClose,
-    handleMovieModalOpen,
-    handleMovieFormOpen,
-    handleMovieFormClose
+    toggleMovieForm,
+    toggleMovieModal
   } = useMoviesController()
 
   if (isMovieFormOpen)
     return <MovieForm 
       movieId={movieEditId} 
-      toBack={handleMovieFormClose} 
+      toBack={isReloadData => toggleMovieForm({ 
+        isReloadData, 
+        state: 'close' 
+      })} 
     />
 
   return (
@@ -30,7 +31,7 @@ export function MoviesView() {
         <h1>Filmes</h1>
         <Button 
           color="var(--blue-2)" 
-          onClick={() => handleMovieFormOpen()}
+          onClick={() => toggleMovieForm({ state: 'open' })}
         >
           <FaPlus/><span>Adicionar</span>
         </Button>
@@ -39,14 +40,14 @@ export function MoviesView() {
       <TableContent 
         data={data}
         isLoading={isLoading}
-        handleEdit={id => handleMovieFormOpen(id)}
-        handleView={handleMovieModalOpen}
+        handleEdit={id => toggleMovieForm({ id, state: 'open' })}
+        handleView={toggleMovieModal}
       />
 
       {isMovieModalOpen && 
         <MovieModal 
           data={movieSelected} 
-          handleClose={handleMovieModalClose}
+          handleClose={() => toggleMovieModal()}
         />
       }
     </div>

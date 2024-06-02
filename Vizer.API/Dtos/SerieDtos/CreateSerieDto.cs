@@ -5,6 +5,7 @@ namespace Vizer.API.Dtos.SerieDtos;
 public class CreateSerieDto
 {
   public string Title { get; set; } = string.Empty;
+  public string Synopsis { get; set; } = string.Empty;
   public string Category { get; set; } = string.Empty;
   public string Banner { get; set; } = string.Empty;
   public string Poster { get; set; } = string.Empty;
@@ -18,6 +19,7 @@ public class CreateSerieDto
     return new Serie
     {
       Title = Title,
+      Synopsis = Synopsis,
       Banner = Banner,
       Poster = Poster,
       Review = Review,

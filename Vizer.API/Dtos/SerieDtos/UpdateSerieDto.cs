@@ -5,6 +5,7 @@ namespace Vizer.API.Dtos.SerieDtos;
 public class UpdateSerieDto
 {
   public string Id { get; set; } = string.Empty;
+  public string Synopsis { get; set; } = string.Empty;
   public string Title { get; set; } = string.Empty;
   public string Category { get; set; } = string.Empty;
   public string Banner { get; set; } = string.Empty;
@@ -20,6 +21,7 @@ public class UpdateSerieDto
     {
       Id = Id,
       Title = Title,
+      Synopsis = Synopsis,
       Banner = Banner,
       Poster = Poster,
       Review = Review,

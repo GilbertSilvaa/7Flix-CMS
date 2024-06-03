@@ -28,8 +28,7 @@ export function useMoviesController() {
     setMovieSelected(undefined)
   }
 
-  async function toggleMovieForm(params: IToggleMovieFormParams) 
-  {  
+  async function toggleMovieForm(params: IToggleMovieFormParams) {  
     if (params.state === 'open') {
       setMovieEditId(params.id)
       setIsMovieFormOpen(true)

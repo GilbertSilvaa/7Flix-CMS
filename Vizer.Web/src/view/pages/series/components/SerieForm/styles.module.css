@@ -1,0 +1,47 @@
+.content {
+  height: 100%;
+  position: relative;
+}
+
+.btnBack {
+  padding: .5rem;
+  border-radius: .6rem;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form {
+  margin-top: 1.5rem;
+  width: 100%;
+  height: 85%;
+  padding-right: .75rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow: auto;
+}
+
+.loading { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -11,7 +11,7 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
   const toast = useToast()
 
   const [isLoadingSubmit, setIsLoadingSubmit] = useState(false)
-  const [isLoadingData, setIsLoadingData] = useState(false)
+  const [isLoadingData, setIsLoadingData] = useState(true)
   const [successSubmit, setSuccessSubmit] = useState(false)
   const [formData, setFormData] = useState<Partial<Movie>>({
     parentalRating: 0,
@@ -51,7 +51,10 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
   }
 
   useEffect(() => {
-    if (!movieEditId) return
+    if (!movieEditId) {
+      setIsLoadingData(false)
+      return
+    }
 
     (async () => {
       try {

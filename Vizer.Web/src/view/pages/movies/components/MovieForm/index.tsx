@@ -80,14 +80,6 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
 
         <div className="double-input">
           <Input 
-            label="Nota Review" 
-            type="tel"
-            placeholder="7.5"
-            isRequired
-            value={movieId && formData.review}
-            onChange={e => setFormValue('review', parseFloat(e.target.value))} 
-          />  
-          <Input 
             label="Ano Lançamento" 
             type="tel"
             placeholder="2020"
@@ -95,11 +87,20 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
             value={movieId && formData.releaseYear}
             onChange={e => setFormValue('releaseYear', e.target.value)} 
           /> 
+          <ParentalRatingOptions 
+            defaultSeleted={formData.parentalRating}
+            onSelect={option => setFormValue('parentalRating', option)}
+          />
+          <Input 
+            label="Nota Review" 
+            type="tel"
+            placeholder="7.5"
+            isRequired
+            value={movieId && formData.review}
+            onChange={e => setFormValue('review', parseFloat(e.target.value))} 
+          />  
         </div>
-        <ParentalRatingOptions 
-          defaultSeleted={formData.parentalRating}
-          onSelect={option => setFormValue('parentalRating', option)}
-        />
+        
 
         <div className="double-input">
           <Input 

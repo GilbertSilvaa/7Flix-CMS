@@ -13,13 +13,8 @@ export function useSeriesController() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSerieFormOpen, setIsSerieFormOpen] = useState(false)
 
-  async function toggleSerieForm(params: IToggleSerieFormParams) {
-    if (params.state === 'open') {
-      setIsSerieFormOpen(true)
-      return
-    }
-    setIsSerieFormOpen(false)
-  }
+  const toggleSerieForm = (params: IToggleSerieFormParams) =>
+    setIsSerieFormOpen(params.state === 'open')
 
   async function getSeries() {
     try {

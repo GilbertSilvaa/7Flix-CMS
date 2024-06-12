@@ -10,9 +10,10 @@ interface IMovieFormControllerParams {
 export function useMovieFormController({ movieEditId }: IMovieFormControllerParams) {
   const toast = useToast()
 
-  const [isLoadingSubmit, setIsLoadingSubmit] = useState(false)
-  const [isLoadingData, setIsLoadingData] = useState(true)
-  const [successSubmit, setSuccessSubmit] = useState(false)
+  const [isLoading, setIsLoading] = useState({
+    submit: false,
+    data: true
+  })
   const [formData, setFormData] = useState<Partial<Movie>>({
     parentalRating: 0,
     video: {
@@ -21,6 +22,7 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
       streamFormat: ''
     }
   })
+  const [successSubmit, setSuccessSubmit] = useState(false)
 
   const setFormValue = (
     field: keyof typeof formData,
@@ -31,7 +33,7 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
     e.preventDefault()
     
     try {
-      setIsLoadingSubmit(true)
+      setIsLoading(prev => ({ ...prev, submit: true }))
       if (movieEditId) {
         await movieService.edit({id: movieEditId, ...formData})
         toast.success('Atualizado com sucesso')
@@ -46,26 +48,26 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
       toast.error('Ops! Houve um erro')
     }
     finally {
-      setIsLoadingSubmit(false)
+      setIsLoading(prev => ({ ...prev, submit: false }))
     }
   }
 
   useEffect(() => {
     if (!movieEditId) {
-      setIsLoadingData(false)
+      setIsLoading(prev => ({ ...prev, data: false }))
       return
     }
 
     (async () => {
       try {
-        setIsLoadingData(true)  
+        setIsLoading(prev => ({ ...prev, data: true }))
         setFormData(await movieService.get(movieEditId))
       }
       catch (err) {
         toast.error('Ops! Houve um erro')
       }
       finally {
-        setIsLoadingData(false)
+        setIsLoading(prev => ({ ...prev, data: false }))
       }
     })()
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,8 +76,7 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
   return {
     handleSubmit: onSubmit,
     setFormValue,
-    isLoadingSubmit,
-    isLoadingData,
+    isLoading,
     formData,
     successSubmit
   }

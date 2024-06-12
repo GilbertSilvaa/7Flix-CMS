@@ -13,15 +13,14 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
   const { 
     setFormValue, 
     handleSubmit, 
-    isLoadingSubmit,
-    isLoadingData,
+    isLoading,
     formData, 
     successSubmit
   } = useMovieFormController({ movieEditId: movieId })
 
   if (successSubmit) toBack(true)
 
-  if (isLoadingData) return (
+  if (isLoading.data) return (
     <div className={styles.content}>
       <div className={styles.header}>
         <button 
@@ -125,7 +124,7 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
         />
 
         <div style={{ marginTop: '1rem' }}>
-          <Button color="var(--green)" isLoading={isLoadingSubmit}>
+          <Button color="var(--green)" isLoading={isLoading.submit}>
             <LuSaveAll/>
             <span>{movieId ? 'Salvar' : 'Cadastrar'}</span>
           </Button>

@@ -41,7 +41,7 @@ export function SeriesView() {
       <TableContent
         data={data}
         isLoading={isLoading}
-        handleEdit={id => console.log('editar', id)}
+        handleEdit={id => toggleSerieForm({ id, state: 'open' })}
         handleView={toggleSerieModal}
       />
 

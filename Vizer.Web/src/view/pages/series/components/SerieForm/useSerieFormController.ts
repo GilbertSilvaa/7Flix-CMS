@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Serie } from '../../../../../app/entities'
 import { useToast } from '../../../../../app/hooks/useToast'
 import { serieService } from '../../../../../app/services/serieService'
@@ -27,11 +27,15 @@ export function useSerieFormController({ serieEditId }: ISerieFormControllerPara
     e.preventDefault()
     
     try {
-      if (serieEditId) return
-
       setIsLoading(prev => ({ ...prev, submit: true }))
-      await serieService.create(formData)
-      toast.success('Cadastro realizado com sucesso')
+      if (serieEditId) {
+        await serieService.edit({id: serieEditId, ...formData})
+        toast.success('Atualizado com sucesso')
+      }
+      else {
+        await serieService.create(formData)
+        toast.success('Cadastro realizado com sucesso')
+      }
       setSuccessSubmit(true)
     }
     catch (err) {
@@ -41,6 +45,27 @@ export function useSerieFormController({ serieEditId }: ISerieFormControllerPara
       setIsLoading(prev => ({ ...prev, submit: false }))
     }
   }
+
+  useEffect(() => {
+    if (!serieEditId) {
+      setIsLoading(prev => ({ ...prev, data: false }))
+      return
+    }
+
+    (async () => {
+      try {
+        setIsLoading(prev => ({ ...prev, data: true }))
+        setFormData(await serieService.get(serieEditId))
+      }
+      catch (err) {
+        toast.error('Ops! Houve um erro')
+      }
+      finally {
+        setIsLoading(prev => ({ ...prev, data: false }))
+      }
+    })()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serieEditId])
 
   return {
     handleSubmit: onSubmit,

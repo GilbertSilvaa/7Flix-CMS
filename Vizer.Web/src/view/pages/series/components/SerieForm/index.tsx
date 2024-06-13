@@ -1,6 +1,6 @@
 import { LuSaveAll } from 'react-icons/lu'
 import { RiArrowGoBackLine } from 'react-icons/ri'
-import { Button, Input, ParentalRatingOptions, TextArea } from '../../../../components'
+import { Button, Input, Loading, ParentalRatingOptions, TextArea } from '../../../../components'
 import styles from './styles.module.css'
 import { useSerieFormController } from './useSerieFormController'
 
@@ -16,9 +16,28 @@ export function SerieForm({ serieId, toBack }: ISerieFormProps) {
     setFormValue,
     handleSubmit,
     successSubmit
-  } = useSerieFormController({})
+  } = useSerieFormController({ serieEditId: serieId })
 
   if (successSubmit) toBack(true)
+
+  if (isLoading.data) return (
+    <div className={styles.content}>
+      <div className={styles.header}>
+        <button 
+          className={styles.btnBack} 
+          onClick={() => toBack(false)}
+        >
+          <RiArrowGoBackLine/>
+        </button>
+        
+        <h1>Editar Série</h1>
+      </div>
+
+      <div className={styles.loading}>
+        <Loading size={1.4}/>
+      </div>
+    </div>
+  )
 
   return (
     <div className={styles.content}>

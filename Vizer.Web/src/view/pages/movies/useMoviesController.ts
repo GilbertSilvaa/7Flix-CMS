@@ -34,8 +34,8 @@ export function useMoviesController() {
       setIsMovieFormOpen(true)
       return
     }
-    setIsMovieFormOpen(false)
     setMovieEditId(undefined)
+    setIsMovieFormOpen(false)
     setIsReload(!!params.isReloadData)
   }
   

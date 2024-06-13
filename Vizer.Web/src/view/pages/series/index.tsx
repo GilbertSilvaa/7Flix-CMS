@@ -1,18 +1,24 @@
 import { FaPlus } from 'react-icons/fa6'
 import { Button, TableContent } from '../../components'
 import { SerieForm } from './components/SerieForm'
+import { SerieModal } from './components/SerieModal'
 import { useSeriesController } from './useSeriesController'
 
 export function SeriesView() {
   const { 
     data, 
     isLoading, 
+    serieEditId,
+    serieSelected,
     isSerieFormOpen, 
-    toggleSerieForm 
+    isSerieModalOpen,
+    toggleSerieForm,
+    toggleSerieModal
   } = useSeriesController()
 
   if (isSerieFormOpen) 
     return <SerieForm
+      serieId={serieEditId}
       toBack={isReloadData => toggleSerieForm({
         state: 'close',
         isReloadData
@@ -31,12 +37,20 @@ export function SeriesView() {
           <span>Adicionar</span>
         </Button>
       </div>
-        <TableContent
-          data={data}
-          isLoading={isLoading}
-          handleView={id => console.log('abrir modal', id)}
-          handleEdit={id => console.log('editar', id)}
+
+      <TableContent
+        data={data}
+        isLoading={isLoading}
+        handleEdit={id => console.log('editar', id)}
+        handleView={toggleSerieModal}
+      />
+
+      {isSerieModalOpen &&
+        <SerieModal
+          data={serieSelected}
+          handleClose={() => toggleSerieModal()}
         />
+      }
     </div>
   )
 }

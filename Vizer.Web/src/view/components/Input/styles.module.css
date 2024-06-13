@@ -20,6 +20,11 @@
   &:focus {
     border-color: #fff;
   }
+
+  &:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+  }
 }
 
 .content label {

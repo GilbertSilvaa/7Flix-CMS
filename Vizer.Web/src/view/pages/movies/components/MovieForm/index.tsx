@@ -96,7 +96,7 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
               placeholder="7.5"
               isRequired
               value={movieId && formData.review}
-              onChange={e => setFormValue('review', parseFloat(e.target.value))} 
+              onChange={e => setFormValue('review', e.target.value)} 
             />  
           </div>
           

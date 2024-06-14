@@ -99,7 +99,7 @@ export function SerieForm({ serieId, toBack }: ISerieFormProps) {
               placeholder="7.5"
               isRequired
               value={serieId && formData.review}
-              onChange={e => setFormValue('review', parseFloat(e.target.value))} 
+              onChange={e => setFormValue('review', e.target.value)} 
             /> 
             <Input 
               label="Qtde. Temporadas" 
@@ -107,7 +107,7 @@ export function SerieForm({ serieId, toBack }: ISerieFormProps) {
               placeholder="2"
               isRequired
               value={serieId && formData.numberSeasons}
-              onChange={e => setFormValue('numberSeasons', parseFloat(e.target.value))} 
+              onChange={e => setFormValue('numberSeasons', e.target.value)} 
             />
           </div>
 

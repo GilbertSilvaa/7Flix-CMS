@@ -4,6 +4,7 @@ import { MdEdit, MdNavigateBefore, MdNavigateNext, MdSearch } from 'react-icons/
 import { Input } from '../Input';
 import { Loading } from '../Loading';
 import styles from './styles.module.css';
+import { IconType } from 'react-icons';
 
 interface ITableContentData {
   id: string
@@ -11,23 +12,30 @@ interface ITableContentData {
   dateCreated: string
 }
 
+interface IBtnsAddsProps {
+  icon: IconType
+  color: string
+  handleClick: (id: string) => void
+}
+
 interface ITableContentProps {
   data: ITableContentData[]
   isLoading?: boolean
   handleView: (id: string) => void
   handleEdit: (id: string) => void
+  btnsAdds?: IBtnsAddsProps[]
 }
 
-export function TableContent({ data, isLoading, handleEdit, handleView }: ITableContentProps) {
-  const [content, setContent] = useState(data)
+export function TableContent(props: ITableContentProps) {
+  const [content, setContent] = useState(props.data)
   const [currentPagination, setCurrentPagination] = useState(0)
 
   function handleSeach(value: string) {
-    setContent(data.filter(({ title }) => 
+    setContent(props.data.filter(({ title }) => 
       title.toLowerCase().match(value.toLowerCase())))
   }
 
-  useEffect(() => setContent(data), [data])
+  useEffect(() => setContent(props.data), [props.data])
 
   return (
     <div>
@@ -50,7 +58,7 @@ export function TableContent({ data, isLoading, handleEdit, handleView }: ITable
           </tr>
         </thead>
         <tbody>
-          {isLoading 
+          {props.isLoading 
             ? <div style={{width: '130%', padding: '1rem'}}><Loading/></div>
             : (content.length
               ? content
@@ -62,17 +70,25 @@ export function TableContent({ data, isLoading, handleEdit, handleView }: ITable
                     <td>
                       <div className={styles.actions}>
                         <button 
-                          onClick={() => handleView(params.id)} 
+                          onClick={() => props.handleView(params.id)} 
                           style={{ background: 'var(--orange)' }}
                         >
                           <FaRegEye/>
                         </button>
                         <button 
-                          onClick={() => handleEdit(params.id)} 
+                          onClick={() => props.handleEdit(params.id)} 
                           style={{ background: 'var(--blue)' }}
                         >
                           <MdEdit/>
                         </button>
+                        {props.btnsAdds?.map(b => 
+                          <button 
+                            onClick={() => b.handleClick(params.id)} 
+                            style={{ background: b.color }}
+                          >
+                            <b.icon/>
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>

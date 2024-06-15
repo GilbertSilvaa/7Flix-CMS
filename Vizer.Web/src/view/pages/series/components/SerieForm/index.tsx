@@ -52,8 +52,8 @@ export function SerieForm({ serieId, toBack }: ISerieFormProps) {
         <h1>{serieId ? 'Editar Série' : 'Cadastrar Série'}</h1>
       </div>
 
-      <form  onSubmit={handleSubmit}>
-        <fieldset className={styles.form} disabled={isLoading.submit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <fieldset className={styles.formContent} disabled={isLoading.submit}>
           <div className="double-input">
             <Input 
               label="Título" 

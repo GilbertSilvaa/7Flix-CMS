@@ -52,8 +52,8 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
         <h1>{movieId ? 'Editar Filme' : 'Cadastrar Filme'}</h1>
       </div>
 
-      <form onSubmit={handleSubmit}>
-        <fieldset className={styles.form} disabled={isLoading.submit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <fieldset className={styles.formContent} disabled={isLoading.submit}>
           <div className="double-input">
             <Input 
               label="Título" 

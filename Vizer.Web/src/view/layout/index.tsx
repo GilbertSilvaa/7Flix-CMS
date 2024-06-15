@@ -36,7 +36,7 @@ export function Layout({ children }: ILayoutProps) {
   function handleChangePage(page: TPages) {
     const { path } = PAGES[page]
     setCurrentPage(page)
-    navigate(path)
+    navigate(path, { replace: true })
   }
 
   return (

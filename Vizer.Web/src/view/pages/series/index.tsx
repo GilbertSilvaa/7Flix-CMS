@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom'
 import { FaPlus } from 'react-icons/fa6'
 import { RiFolderVideoFill } from 'react-icons/ri'
+import { useNavigate } from 'react-router-dom'
 import { Button, TableContent } from '../../components'
 import { SerieForm } from './components/SerieForm'
 import { SerieModal } from './components/SerieModal'
@@ -50,7 +50,7 @@ export function SeriesView() {
         btnsAdds={[{ 
           icon: RiFolderVideoFill, 
           color: 'var(--purple)', 
-          handleClick: id => navigate(`/episodes/${id}`) 
+          handleClick: id => navigate(`/episodes/${id}`, { replace: true }) 
         }]}
       />
 

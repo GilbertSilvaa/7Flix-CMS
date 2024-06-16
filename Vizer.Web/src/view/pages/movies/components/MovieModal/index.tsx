@@ -21,7 +21,7 @@ export function MovieModal({ data, handleClose }: IMovieModalProps) {
             <div style={{ width: '68%' }}>
               <div className={styles.flex}>
                 <ParentalRating pr={data?.parentalRating as never}/>
-                <div className={styles.category}>
+                <div className={styles.tag}>
                   {data?.category}
                 </div>
                 <span>{data?.releaseYear}</span>

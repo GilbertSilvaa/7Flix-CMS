@@ -21,12 +21,10 @@ export function SerieModal({ data, handleClose }: ISerieModalProps) {
             <div style={{ width: '68%' }}>
               <div className={styles.flex}>
                 <ParentalRating pr={data?.parentalRating as never}/>
-                <div className={styles.category}>
+                <div className={styles.tag}>
                   {data?.category}
                 </div>
-                <div className={styles.category}>
-                  {data?.numberSeasons} seasons
-                </div>
+                
                 <span>{data?.releaseYear}</span>
               </div>
               
@@ -35,6 +33,15 @@ export function SerieModal({ data, handleClose }: ISerieModalProps) {
               </div>
 
               <p className={styles.synopsis}>{data?.synopsis || 'Sem descrição'}</p>
+
+              <div className={styles.flex}>
+                <div className={styles.tag}>
+                  {data?.numberSeasons} temporadas
+                </div>
+                <div className={styles.tag}>
+                  {data?.episodes.length} episódios
+                </div>
+              </div>
             </div>
           </div>
         : <div className={styles.loading}>

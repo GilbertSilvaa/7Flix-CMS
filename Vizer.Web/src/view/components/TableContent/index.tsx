@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { IconType } from 'react-icons';
 import { FaRegEye } from 'react-icons/fa';
 import { MdEdit, MdNavigateBefore, MdNavigateNext, MdSearch } from 'react-icons/md';
+import { IconButton } from '../IconButton';
 import { Input } from '../Input';
 import { Loading } from '../Loading';
 import styles from './styles.module.css';
-import { IconType } from 'react-icons';
 
 interface ITableContentData {
   id: string
@@ -14,7 +15,8 @@ interface ITableContentData {
 
 interface IBtnsAddsProps {
   icon: IconType
-  color: string
+  color?: string
+  popoverText?: string
   handleClick: (id: string) => void
 }
 
@@ -69,25 +71,26 @@ export function TableContent(props: ITableContentProps) {
                     <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
                     <td>
                       <div className={styles.actions}>
-                        <button 
+                        <IconButton 
+                          icon={FaRegEye} 
+                          color="var(--orange)"
+                          popoverText="visualizar"
                           onClick={() => props.handleView(params.id)} 
-                          style={{ background: 'var(--orange)' }}
-                        >
-                          <FaRegEye/>
-                        </button>
-                        <button 
+                        />
+                        <IconButton 
+                          icon={MdEdit} 
+                          color="var(--blue)"
+                          popoverText="editar"
                           onClick={() => props.handleEdit(params.id)} 
-                          style={{ background: 'var(--blue)' }}
-                        >
-                          <MdEdit/>
-                        </button>
+                        />
+
                         {props.btnsAdds?.map(b => 
-                          <button 
+                          <IconButton 
+                            icon={b.icon} 
+                            color={b.color}
+                            popoverText={b.popoverText}
                             onClick={() => b.handleClick(params.id)} 
-                            style={{ background: b.color }}
-                          >
-                            <b.icon/>
-                          </button>
+                          />
                         )}
                       </div>
                     </td>

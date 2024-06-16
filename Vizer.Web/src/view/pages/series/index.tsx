@@ -50,6 +50,7 @@ export function SeriesView() {
         btnsAdds={[{ 
           icon: RiFolderVideoFill, 
           color: 'var(--purple)', 
+          popoverText: 'episódios',
           handleClick: id => navigate(`/episodes/${id}`, { replace: true }) 
         }]}
       />

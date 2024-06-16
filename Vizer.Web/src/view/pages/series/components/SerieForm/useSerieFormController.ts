@@ -28,8 +28,8 @@ export function useSerieFormController({ serieEditId }: ISerieFormControllerPara
     
     try {
       setIsLoading(prev => ({ ...prev, submit: true }))
-      formData.numberSeasons = parseFloat(formData.numberSeasons?.toString()!)
-      formData.review = parseFloat(formData.review?.toString()!)
+      formData.numberSeasons = parseFloat(formData.numberSeasons!.toString()!)
+      formData.review = parseFloat(formData.review!.toString()!)
 
       if (serieEditId) {
         await serieService.edit({id: serieEditId, ...formData})

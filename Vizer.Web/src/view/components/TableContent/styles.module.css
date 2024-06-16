@@ -45,22 +45,6 @@
   gap: .6rem;
 }
 
-.table .actions button {
-  padding: .5rem .6rem;
-  border-radius: .5rem;
-  cursor: pointer;
-  transition: .5s;
-  
-  font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    opacity: .8;
-  }
-}
-
 .footer {
   padding-top: .75rem;
   padding-right: .3rem;

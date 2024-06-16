@@ -30,10 +30,11 @@ export function useEpisodesController(serieId: string) {
   }
 }
 
-function episodeTableContentAdapter({ id, title, createAt }: Episode) {
+function episodeTableContentAdapter(params: Episode) {
   return {
-    id,
-    title,
-    dateCreated: createAt.toLocaleDateString()
+    id: params.id,
+    title: params.title,
+    dateCreated: params.createAt.toLocaleDateString(),
+    dataAdds: [String(params.season), String(params.number)]
   }
 }

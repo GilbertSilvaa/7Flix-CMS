@@ -11,6 +11,7 @@ interface ITableContentData {
   id: string
   title: string
   dateCreated: string
+  dataAdds?: string[]
 }
 
 interface IBtnsAddsProps {
@@ -26,6 +27,7 @@ interface ITableContentProps {
   handleView: (id: string) => void
   handleEdit: (id: string) => void
   btnsAdds?: IBtnsAddsProps[]
+  columnsAdds?: string[]
 }
 
 export function TableContent(props: ITableContentProps) {
@@ -55,6 +57,7 @@ export function TableContent(props: ITableContentProps) {
         <thead>
           <tr>
             <th>Título</th>
+            {props.columnsAdds?.map(c => <th>{ c }</th>)}
             <th>Cadastro</th>
             <th>Ações</th>
           </tr>
@@ -69,6 +72,13 @@ export function TableContent(props: ITableContentProps) {
                   <tr key={index}>
                     <td>{params.title}</td>
                     <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
+
+                    {props.columnsAdds?.map((_, index) => 
+                      <td>
+                        {params.dataAdds ? params.dataAdds[index] : 'N/A'}
+                      </td>
+                    )}
+                    
                     <td>
                       <div className={styles.actions}>
                         <IconButton 
@@ -100,6 +110,7 @@ export function TableContent(props: ITableContentProps) {
                   <td style={{padding: '1rem'}}>Sem registros encontrados</td>
                   <td></td>
                   <td></td>
+                  {props.columnsAdds?.map(() => <td></td>)}
                 </tr>
             )
           }

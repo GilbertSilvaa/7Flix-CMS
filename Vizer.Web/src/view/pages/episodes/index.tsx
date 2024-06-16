@@ -26,7 +26,7 @@ export function EpisodesView() {
             <RiArrowGoBackLine/>
           </button>
           
-          <h1>{serieTitle} (Episódios)</h1>
+          <h1>{isLoading ? 'Episódios...' : `${serieTitle} (Episódios)`}</h1>
         </div>
         <Button 
           color="var(--blue-2)" 
@@ -38,6 +38,7 @@ export function EpisodesView() {
 
       <TableContent 
         data={data}
+        columnsAdds={['Temporada', 'Episódio']}
         isLoading={isLoading}
         handleEdit={id => console.log(id)}
         handleView={() => {}}

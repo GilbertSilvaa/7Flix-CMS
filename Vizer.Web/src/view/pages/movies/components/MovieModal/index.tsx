@@ -1,6 +1,7 @@
 import { FaStar } from 'react-icons/fa'
 import { Movie } from '../../../../../app/entities'
 import { Loading, Modal, ParentalRating, VideoDetails } from '../../../../components'
+import loadingImg from '../../.././../../assets/loading-img.png'
 import styles from './styles.module.css'
 
 interface IMovieModalProps {
@@ -16,7 +17,12 @@ export function MovieModal({ data, handleClose }: IMovieModalProps) {
     >
       {data 
         ? <div className={styles.content}>
-            <img src={data?.poster} alt={data?.poster} className={styles.poster} />
+            <img 
+              src={loadingImg} 
+              srcSet={data?.poster} 
+              alt={data?.poster}
+              className={styles.poster} 
+            />
           
             <div style={{ width: '68%' }}>
               <div className={styles.flex}>

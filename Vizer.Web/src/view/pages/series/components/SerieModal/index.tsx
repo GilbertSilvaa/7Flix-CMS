@@ -1,6 +1,7 @@
 import { FaStar } from 'react-icons/fa'
 import { Serie } from '../../../../../app/entities'
 import { Loading, Modal, ParentalRating } from '../../../../components'
+import loadingImg from '../../.././../../assets/loading-img.png'
 import styles from './styles.module.css'
 
 interface ISerieModalProps {
@@ -16,7 +17,12 @@ export function SerieModal({ data, handleClose }: ISerieModalProps) {
     >
       {data 
         ? <div className={styles.content}>
-            <img src={data?.poster} alt={data?.poster} className={styles.poster} />
+            <img 
+              src={loadingImg} 
+              srcSet={data?.poster} 
+              alt={data?.poster} 
+              className={styles.poster} 
+            />
           
             <div style={{ width: '68%' }}>
               <div className={styles.flex}>

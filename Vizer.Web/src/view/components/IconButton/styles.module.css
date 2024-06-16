@@ -33,4 +33,5 @@
   transform: translate(-50%, 0);
   transition: .5s;
   font-size: .8rem;
+  z-index: 9999;
 }

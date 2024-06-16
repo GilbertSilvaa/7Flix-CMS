@@ -6,4 +6,5 @@ export interface Midia {
   poster: string
   parentalRating: number
   releaseYear: string
+  createAt: Date
 }

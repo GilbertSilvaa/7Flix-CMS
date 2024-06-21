@@ -2,6 +2,7 @@ import { FaPlus } from 'react-icons/fa6'
 import { RiArrowGoBackLine } from 'react-icons/ri'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, TableContent } from '../../components'
+import { EpisodeForm } from './components/EpisodeForm'
 import styles from './styles.module.css'
 import { useEpisodesController } from './useEpisodesController'
 
@@ -12,8 +13,15 @@ export function EpisodesView() {
   const {
     data,
     isLoading,
-    serieTitle
+    serieTitle,
+    isEpisodeFormOpen,
+    toggleEpisodeForm
   } = useEpisodesController(serieId!)
+
+  if (isEpisodeFormOpen)
+    return <EpisodeForm 
+      toBack={() => toggleEpisodeForm({ state: 'close' })} 
+    />
 
   return (
     <div className={styles.content}>
@@ -30,7 +38,7 @@ export function EpisodesView() {
         </div>
         <Button 
           color="var(--blue-2)" 
-          onClick={() => {}}
+          onClick={() => toggleEpisodeForm({ state: 'open' })}
         >
           <FaPlus/><span>Adicionar</span>
         </Button>

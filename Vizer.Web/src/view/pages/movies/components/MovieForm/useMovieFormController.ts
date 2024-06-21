@@ -34,7 +34,7 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
     
     try {
       setIsLoading(prev => ({ ...prev, submit: true }))
-      formData.review = parseFloat(formData.review?.toString()!)
+      formData.review = parseFloat(formData.review!.toString())
       
       if (movieEditId) {
         await movieService.edit({id: movieEditId, ...formData})

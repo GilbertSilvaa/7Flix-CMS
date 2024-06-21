@@ -6,6 +6,7 @@ public class GetAllSerieResponseDto
 {
   public string Id { get; set; } = string.Empty;
   public string Title { get; set; } = string.Empty;
+  public int NumberSeasons { get; set; } = 0;
   public DateTime? DateCreated { get; set; }
 
   public static GetAllSerieResponseDto ToEntity(Serie serie)
@@ -14,6 +15,7 @@ public class GetAllSerieResponseDto
     {
       Id = serie.Id,
       Title = serie.Title,
+      NumberSeasons = serie.NumberSeasons,
       DateCreated = serie.CreateAt
     };
   }

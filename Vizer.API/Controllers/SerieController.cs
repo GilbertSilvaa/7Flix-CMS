@@ -76,7 +76,7 @@ public class SerieController : ControllerBase
 
   [HttpPost]
   [Route("AddEpisode")]
-  public async Task<IActionResult> AddEpisode(AddEpisodeDto dto)
+  public async Task<IActionResult> AddEpisode(CreateEpisodeDto dto)
   {
     try
     {

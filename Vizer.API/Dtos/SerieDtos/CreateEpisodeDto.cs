@@ -3,7 +3,7 @@ using Vizer.API.ValueObjects;
 
 namespace Vizer.API.Dtos.SerieDtos;
 
-public class AddEpisodeDto
+public class CreateEpisodeDto
 {
   public string IdSerie { get; set; } = string.Empty;
   public string Title { get; set; } = string.Empty;

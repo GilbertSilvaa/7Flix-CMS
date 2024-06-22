@@ -13,7 +13,7 @@ export function EpisodesView() {
   const {
     data,
     isLoading,
-    serieTitle,
+    serieData,
     isEpisodeFormOpen,
     toggleEpisodeForm
   } = useEpisodesController(serieId!)
@@ -34,7 +34,7 @@ export function EpisodesView() {
             <RiArrowGoBackLine/>
           </button>
           
-          <h1>{isLoading ? 'Episódios...' : `${serieTitle} (Episódios)`}</h1>
+          <h1>{isLoading ? 'Episódios...' : `${serieData?.title} (Episódios)`}</h1>
         </div>
         <Button 
           color="var(--blue-2)" 

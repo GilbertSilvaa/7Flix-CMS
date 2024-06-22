@@ -17,12 +17,12 @@ public class SerieService
       .OrderByDescending(s => s.DateCreated);
   }
 
-  public async Task<Serie?> Get(string id)
+  public async Task<GetSerieResponseDto> Get(string id)
   {
     var response = await _repository.GetAsync(id)
       ?? throw new NotFoundException("serie not found");
 
-    return response;
+    return GetSerieResponseDto.ToEntity(response);
   }
 
   public async Task Create(CreateSerieDto dto)
@@ -40,7 +40,7 @@ public class SerieService
     await _repository.UpdateAsync(dto.Id, entity);
   }
 
-  public async Task AddEpisode(AddEpisodeDto dto)
+  public async Task AddEpisode(CreateEpisodeDto dto)
   {
     var response = await _repository.GetAsync(dto.IdSerie)
       ?? throw new NotFoundException("serie not found");

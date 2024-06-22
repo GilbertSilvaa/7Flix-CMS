@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Episode } from '../../../app/entities'
+import { Episode, Serie } from '../../../app/entities'
 import { serieService } from '../../../app/services/serieService'
 
 interface IToggleSerieFormParams {
@@ -9,7 +9,7 @@ interface IToggleSerieFormParams {
 }
 
 export function useEpisodesController(serieId: string) {
-  const [serieTitle, setSerieTitle] = useState('')
+  const [serieData, setSerieData] = useState<Partial<Serie>>()
   const [episodes, setEpisodes] = useState<Episode[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isEpisodeModalOpen, setIsEpisodeModalOpen] = useState(false)
@@ -31,9 +31,10 @@ export function useEpisodesController(serieId: string) {
   async function getEpisodes() {
     try {
       setIsLoading(true)
-      const { title, episodes } = await serieService.get(serieId)
-      setSerieTitle(title)
-      setEpisodes(episodes)
+      const response = await serieService.get(serieId)
+      console.log(response)
+      setSerieData(response)
+      setEpisodes(response.episodes)
     }
     finally {
       setIsLoading(false)
@@ -45,7 +46,7 @@ export function useEpisodesController(serieId: string) {
   }, [])
 
   return {
-    serieTitle,
+    serieData,
     isLoading,
     data: episodes.map(episodeTableContentAdapter),
     isEpisodeModalOpen,

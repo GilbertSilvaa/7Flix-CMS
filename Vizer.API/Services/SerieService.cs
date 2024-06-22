@@ -13,7 +13,7 @@ public class SerieService
   {
     var response = await _repository.GetAsync();
     return response
-      .Select(GetAllSerieResponseDto.ToEntity)
+      .Select(GetAllSerieResponseDto.FromEntity)
       .OrderByDescending(s => s.DateCreated);
   }
 
@@ -22,7 +22,7 @@ public class SerieService
     var response = await _repository.GetAsync(id)
       ?? throw new NotFoundException("serie not found");
 
-    return GetSerieResponseDto.ToEntity(response);
+    return GetSerieResponseDto.FromEntity(response);
   }
 
   public async Task Create(CreateSerieDto dto)
@@ -45,7 +45,7 @@ public class SerieService
     var response = await _repository.GetAsync(dto.IdSerie)
       ?? throw new NotFoundException("serie not found");
 
-    response.Episodes.Add(dto.GetEpisode());
+    response.Episodes.Add(dto.ToEntity());
     await _repository.UpdateAsync(dto.IdSerie, response);
   }
 
@@ -53,7 +53,7 @@ public class SerieService
     var response = await _repository.GetAsync(idSerie)
       ?? throw new NotFoundException("serie not found");
 
-    return GetAllEpisodesResponseDto.ToEntity(response);
+    return GetAllEpisodesResponseDto.FromEntity(response);
   }
 
   public async Task RemoveEpisode(RemoveEpisodeDto dto)

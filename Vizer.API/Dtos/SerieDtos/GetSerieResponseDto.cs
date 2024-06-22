@@ -18,7 +18,7 @@ public class GetSerieResponseDto
   public DateTime CreateAt { get; set; }
   public DateTime? UpdateAt { get; set; }
 
-  public static GetSerieResponseDto ToEntity(Serie serie)
+  public static GetSerieResponseDto FromEntity(Serie serie)
   {
     return new GetSerieResponseDto 
     {

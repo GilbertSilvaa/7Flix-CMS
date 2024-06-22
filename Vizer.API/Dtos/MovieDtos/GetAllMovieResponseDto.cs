@@ -8,7 +8,7 @@ public class GetAllMovieResponseDto
   public string Title { get; set; } = string.Empty;
   public DateTime? DateCreated { get; set; }
 
-  public static GetAllMovieResponseDto ToEntity(Movie movie)
+  public static GetAllMovieResponseDto FromEntity(Movie movie)
   {
     return new GetAllMovieResponseDto
     {

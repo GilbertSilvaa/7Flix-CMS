@@ -8,13 +8,13 @@ public class GetAllEpisodesResponseDto
   public int NumberSeasons { get; set; }
   public IEnumerable<EpisodeDto> Episodes { get; set; } = [];
 
-  public static GetAllEpisodesResponseDto ToEntity(Serie serie)
+  public static GetAllEpisodesResponseDto FromEntity(Serie serie)
   {
     return new GetAllEpisodesResponseDto
     {
       SerieTitle = serie.Title,
       NumberSeasons = serie.NumberSeasons,
-      Episodes = serie.Episodes.Select(EpisodeDto.ToEntity)
+      Episodes = serie.Episodes.Select(EpisodeDto.FromEntity)
     };
   }
 
@@ -25,7 +25,7 @@ public class GetAllEpisodesResponseDto
     public int Season { get; set; }
     public int Episode { get; set; }
 
-    public static EpisodeDto ToEntity(Episode episode)
+    public static EpisodeDto FromEntity(Episode episode)
     {
       return new EpisodeDto
       {

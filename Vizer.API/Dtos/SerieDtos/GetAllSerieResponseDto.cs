@@ -9,7 +9,7 @@ public class GetAllSerieResponseDto
   public int NumberSeasons { get; set; } = 0;
   public DateTime? DateCreated { get; set; }
 
-  public static GetAllSerieResponseDto ToEntity(Serie serie)
+  public static GetAllSerieResponseDto FromEntity(Serie serie)
   {
     return new GetAllSerieResponseDto
     {

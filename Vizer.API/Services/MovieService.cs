@@ -13,7 +13,7 @@ public class MovieService
   {
     var response = await _repository.GetAsync();
     return response
-      .Select(GetAllMovieResponseDto.ToEntity)
+      .Select(GetAllMovieResponseDto.FromEntity)
       .OrderByDescending(m => m.DateCreated);
   }
 

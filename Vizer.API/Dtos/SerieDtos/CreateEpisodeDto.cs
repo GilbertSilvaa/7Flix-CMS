@@ -16,7 +16,7 @@ public class CreateEpisodeDto
   public int Season { get; set; }
   public Video? Video { get; set; }
 
-  public Episode GetEpisode()
+  public Episode ToEntity()
   {
     return new Episode
     {

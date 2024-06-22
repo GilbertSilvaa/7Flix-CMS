@@ -6,6 +6,6 @@ type TEpisodeCreateParams = Partial<Episode>
 interface IEpisodeCreateResponse { }
 
 export async function create(params: TEpisodeCreateParams) {
-  const { data } = await httpClient.post<IEpisodeCreateResponse>('/serie/AddEpisode', params)
+  const { data } = await httpClient.post<IEpisodeCreateResponse>('/serie/Episode', params)
   return data
 }

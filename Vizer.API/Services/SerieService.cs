@@ -1,5 +1,6 @@
 ﻿using Vizer.API.Dtos.SerieDtos.Requests;
 using Vizer.API.Dtos.SerieDtos.Responses;
+using Vizer.API.Entities;
 using Vizer.API.Exceptions;
 using Vizer.API.Repositories;
 
@@ -40,6 +41,33 @@ public class SerieService
     await _repository.UpdateAsync(dto.Id, entity);
   }
 
+  public async Task Delete(string id)
+  {
+    var response = await _repository.GetAsync(id)
+      ?? throw new NotFoundException("serie not found");
+
+    await _repository.RemoveAsync(response.Id);
+  }
+
+  public async Task<GetAllEpisodesResponseDto> GetEpisodes(string idSerie)
+  {
+    var response = await _repository.GetAsync(idSerie)
+      ?? throw new NotFoundException("serie not found");
+
+    return GetAllEpisodesResponseDto.FromEntity(response);
+  }
+
+  public async Task<Episode?> GetEpisode(string idSerie, string idEpisode) 
+  {
+    var response = await _repository.GetAsync(idSerie)
+      ?? throw new NotFoundException("serie not found");
+
+    var episode = response.Episodes.SingleOrDefault(e => e.Id == idEpisode)
+      ?? throw new NotFoundException("episode not found");
+
+    return episode;
+  }
+
   public async Task CreateEpisode(CreateEpisodeDto dto)
   {
     var response = await _repository.GetAsync(dto.IdSerie)
@@ -49,30 +77,16 @@ public class SerieService
     await _repository.UpdateAsync(dto.IdSerie, response);
   }
 
-  public async Task<GetAllEpisodesResponseDto> GetEpisodes(string idSerie) {
+
+  public async Task RemoveEpisode(string idSerie, string idEpisode)
+  {
     var response = await _repository.GetAsync(idSerie)
       ?? throw new NotFoundException("serie not found");
 
-    return GetAllEpisodesResponseDto.FromEntity(response);
-  }
-
-  public async Task RemoveEpisode(RemoveEpisodeDto dto)
-  {
-    var response = await _repository.GetAsync(dto.IdSerie)
-      ?? throw new NotFoundException("serie not found");
-
-    var episode = response.Episodes.SingleOrDefault(e => e.Id == dto.IdEpisode)
+    var episode = response.Episodes.SingleOrDefault(e => e.Id == idEpisode)
       ?? throw new NotFoundException("episode not found");
 
     response.Episodes.Remove(episode);
-    await _repository.UpdateAsync(dto.IdSerie, response);
-  }
-
-  public async Task Delete(string id) 
-  {
-    var response = await _repository.GetAsync(id)
-      ?? throw new NotFoundException("serie not found");
-
-    await _repository.RemoveAsync(response.Id);
+    await _repository.UpdateAsync(idSerie, response);
   }
 }

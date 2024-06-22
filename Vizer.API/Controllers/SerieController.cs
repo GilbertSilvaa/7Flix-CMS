@@ -74,6 +74,60 @@ public class SerieController : ControllerBase
     }
   }
 
+  [HttpDelete("{id}")]
+  public async Task<IActionResult> Delete(string id)
+  {
+    try
+    {
+      await _service.Delete(id);
+      return NoContent();
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
+
+  [HttpGet]
+  [Route("Episode/{idSerie}")]
+  public async Task<IActionResult> GetEpisodes(string idSerie)
+  {
+    try
+    {
+      return Ok(await _service.GetEpisodes(idSerie));
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
+
+  [HttpGet]
+  [Route("Episode/{idSerie}/{idEpisode}")]
+  public async Task<IActionResult> GetEpisode(string idSerie, string idEpisode)
+  {
+    try
+    {
+      return Ok(await _service.GetEpisode(idSerie, idEpisode));
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
+
   [HttpPost]
   [Route("Episode")]
   public async Task<IActionResult> CreateEpisode(CreateEpisodeDto dto)
@@ -93,49 +147,13 @@ public class SerieController : ControllerBase
     }
   }
 
-  [HttpGet]
-  [Route("Episode/{idSerie}")]
-  public async Task<IActionResult> GetEpisodes(string idSerie)
-  { 
-    try
-    {
-      return Ok(await _service.GetEpisodes(idSerie));
-    }
-    catch (NotFoundException ex)
-    {
-      return NotFound(ex.Message);
-    }
-    catch (Exception ex)
-    {
-      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
-    }
-  }
-
   [HttpDelete]
-  [Route("Episode")]
-  public async Task<IActionResult> RemoveEpisode(RemoveEpisodeDto dto)
+  [Route("Episode/{idSerie}/{idEpisode}")]
+  public async Task<IActionResult> RemoveEpisode(string idSerie, string idEpisode)
   {
     try
     {
-      await _service.RemoveEpisode(dto);
-      return NoContent();
-    }
-    catch (NotFoundException ex)
-    {
-      return NotFound(ex.Message);
-    }
-    catch (Exception ex)
-    {
-      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
-    }
-  }
-
-  [HttpDelete("{id}")]
-  public async Task<IActionResult> Delete(string id)
-  {
-    try
-    {
-      await _service.Delete(id);
+      await _service.RemoveEpisode(idSerie, idEpisode);
       return NoContent();
     }
     catch (NotFoundException ex)

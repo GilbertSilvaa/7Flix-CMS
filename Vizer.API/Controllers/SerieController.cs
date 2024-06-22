@@ -147,6 +147,25 @@ public class SerieController : ControllerBase
     }
   }
 
+  [HttpPut]
+  [Route("Episode")]
+  public async Task<IActionResult> UpdateEpisode(UpdateEpisodeDto dto)
+  {
+    try
+    {
+      await _service.UpdateEpisode(dto);
+      return NoContent();
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
+
   [HttpDelete]
   [Route("Episode/{idSerie}/{idEpisode}")]
   public async Task<IActionResult> RemoveEpisode(string idSerie, string idEpisode)

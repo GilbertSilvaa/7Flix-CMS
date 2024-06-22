@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Vizer.API.Dtos.MovieDtos;
+using Vizer.API.Dtos.MovieDtos.Requests;
 using Vizer.API.Exceptions;
 using Vizer.API.Services;
 

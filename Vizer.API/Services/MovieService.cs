@@ -1,4 +1,5 @@
-﻿using Vizer.API.Dtos.MovieDtos;
+﻿using Vizer.API.Dtos.MovieDtos.Requests;
+using Vizer.API.Dtos.MovieDtos.Responses;
 using Vizer.API.Entities;
 using Vizer.API.Exceptions;
 using Vizer.API.Repositories;

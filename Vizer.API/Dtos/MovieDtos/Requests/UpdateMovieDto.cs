@@ -1,7 +1,7 @@
 ﻿using Vizer.API.Entities;
 using Vizer.API.ValueObjects;
 
-namespace Vizer.API.Dtos.MovieDtos;
+namespace Vizer.API.Dtos.MovieDtos.Requests;
 
 public class UpdateMovieDto
 {

@@ -1,6 +1,6 @@
 ﻿using Vizer.API.Entities;
 
-namespace Vizer.API.Dtos.MovieDtos;
+namespace Vizer.API.Dtos.MovieDtos.Responses;
 
 public class GetAllMovieResponseDto
 {

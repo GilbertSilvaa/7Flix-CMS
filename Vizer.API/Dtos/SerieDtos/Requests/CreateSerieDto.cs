@@ -1,9 +1,8 @@
 ﻿using Vizer.API.Entities;
-using Vizer.API.ValueObjects;
 
-namespace Vizer.API.Dtos.MovieDtos;
+namespace Vizer.API.Dtos.SerieDtos.Requests;
 
-public class CreateMovieDto
+public class CreateSerieDto
 {
   public string Title { get; set; } = string.Empty;
   public string Synopsis { get; set; } = string.Empty;
@@ -12,21 +11,21 @@ public class CreateMovieDto
   public string Poster { get; set; } = string.Empty;
   public string ReleaseYear { get; set; } = string.Empty;
   public int ParentalRating { get; set; }
+  public int NumberSeasons { get; set; }
   public float Review { get; set; }
-  public Video? Video { get; set; }
 
-  public Movie ToEntity()
+  public Serie ToEntity()
   {
-    return new Movie
+    return new Serie
     {
       Title = Title,
       Synopsis = Synopsis,
-      Video = Video,
       Banner = Banner,
       Poster = Poster,
       Review = Review,
       Category = Category,
       ReleaseYear = ReleaseYear,
+      NumberSeasons = NumberSeasons,
       ParentalRating = ParentalRating
     };
   }

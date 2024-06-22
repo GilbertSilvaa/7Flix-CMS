@@ -1,4 +1,4 @@
-﻿namespace Vizer.API.Dtos.SerieDtos;
+﻿namespace Vizer.API.Dtos.SerieDtos.Requests;
 
 public class RemoveEpisodeDto
 {

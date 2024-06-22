@@ -1,5 +1,5 @@
-﻿using Vizer.API.Dtos.SerieDtos;
-using Vizer.API.Entities;
+﻿using Vizer.API.Dtos.SerieDtos.Requests;
+using Vizer.API.Dtos.SerieDtos.Responses;
 using Vizer.API.Exceptions;
 using Vizer.API.Repositories;
 

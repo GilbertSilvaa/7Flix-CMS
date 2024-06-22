@@ -1,6 +1,6 @@
 ﻿using Vizer.API.Entities;
 
-namespace Vizer.API.Dtos.SerieDtos;
+namespace Vizer.API.Dtos.SerieDtos.Requests;
 
 public class UpdateSerieDto
 {

@@ -45,7 +45,7 @@ export function SerieModal({ data, handleClose }: ISerieModalProps) {
                   {data?.numberSeasons} temporadas
                 </div>
                 <div className={styles.tag}>
-                  {data?.episodes.length} episódios
+                  {data?.numberEpisodes} episódios
                 </div>
               </div>
             </div>

@@ -75,12 +75,12 @@ public class SerieController : ControllerBase
   }
 
   [HttpPost]
-  [Route("AddEpisode")]
-  public async Task<IActionResult> AddEpisode(CreateEpisodeDto dto)
+  [Route("Episode")]
+  public async Task<IActionResult> CreateEpisode(CreateEpisodeDto dto)
   {
     try
     {
-      await _service.AddEpisode(dto);
+      await _service.CreateEpisode(dto);
       return NoContent();
     }
     catch (NotFoundException ex)
@@ -93,8 +93,26 @@ public class SerieController : ControllerBase
     }
   }
 
-  [HttpPost]
-  [Route("RemoveEpisode")]
+  [HttpGet]
+  [Route("Episode/{idSerie}")]
+  public async Task<IActionResult> GetEpisodes(string idSerie)
+  { 
+    try
+    {
+      return Ok(await _service.GetEpisodes(idSerie));
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
+
+  [HttpDelete]
+  [Route("Episode")]
   public async Task<IActionResult> RemoveEpisode(RemoveEpisodeDto dto)
   {
     try

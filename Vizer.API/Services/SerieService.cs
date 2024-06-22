@@ -40,13 +40,20 @@ public class SerieService
     await _repository.UpdateAsync(dto.Id, entity);
   }
 
-  public async Task AddEpisode(CreateEpisodeDto dto)
+  public async Task CreateEpisode(CreateEpisodeDto dto)
   {
     var response = await _repository.GetAsync(dto.IdSerie)
       ?? throw new NotFoundException("serie not found");
 
     response.Episodes.Add(dto.GetEpisode());
     await _repository.UpdateAsync(dto.IdSerie, response);
+  }
+
+  public async Task<GetAllEpisodesResponseDto> GetEpisodes(string idSerie) {
+    var response = await _repository.GetAsync(idSerie)
+      ?? throw new NotFoundException("serie not found");
+
+    return GetAllEpisodesResponseDto.ToEntity(response);
   }
 
   public async Task RemoveEpisode(RemoveEpisodeDto dto)

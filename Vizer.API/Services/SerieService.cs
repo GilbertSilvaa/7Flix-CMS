@@ -1,4 +1,5 @@
-﻿using Vizer.API.Dtos.SerieDtos.Requests;
+﻿using System.Collections.Immutable;
+using Vizer.API.Dtos.SerieDtos.Requests;
 using Vizer.API.Dtos.SerieDtos.Responses;
 using Vizer.API.Entities;
 using Vizer.API.Exceptions;
@@ -54,6 +55,10 @@ public class SerieService
     var response = await _repository.GetAsync(idSerie)
       ?? throw new NotFoundException("serie not found");
 
+    response.Episodes = [.. response.Episodes
+      .OrderByDescending(e => e.Season)
+      .OrderByDescending(e => e.Number)
+    ];  
     return GetAllEpisodesResponseDto.FromEntity(response);
   }
 

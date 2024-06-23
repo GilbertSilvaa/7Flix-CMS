@@ -12,7 +12,7 @@ public class CreateEpisodeDto
   public string Poster { get; set; } = string.Empty;
   public string ReleaseYear { get; set; } = string.Empty;
   public int ParentalRating { get; set; }
-  public int Episode {  get; set; }
+  public int Number {  get; set; }
   public int Season { get; set; }
   public Video? Video { get; set; }
 
@@ -26,7 +26,7 @@ public class CreateEpisodeDto
       Season = Season,
       Banner = Banner,
       Poster = Poster,
-      Number = Episode,
+      Number = Number,
       ReleaseYear = ReleaseYear,
       ParentalRating = ParentalRating
     };

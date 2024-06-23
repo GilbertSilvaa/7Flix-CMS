@@ -24,6 +24,7 @@ public class GetAllEpisodesResponseDto
     public string Title { get; set; } = string.Empty;
     public int Season { get; set; }
     public int Episode { get; set; }
+    public DateTime? DateCreated { get; set; }
 
     public static EpisodeDto FromEntity(Episode episode)
     {
@@ -32,7 +33,8 @@ public class GetAllEpisodesResponseDto
         Id = episode.Id,
         Title = episode.Title,
         Season = episode.Season,
-        Episode = episode.Number
+        Episode = episode.Number,
+        DateCreated = episode.CreateAt
       };
     }
   }

@@ -17,6 +17,7 @@ export function useEpisodesController(serieId: string) {
   const [serieData, setSerieData] = useState<ISerieData>()
   const [episodes, setEpisodes] = useState<IEpisodeData[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [isReload, setIsReload] = useState(false)
   const [isEpisodeModalOpen, setIsEpisodeModalOpen] = useState(false)
   const [isEpisodeFormOpen, setIsEpisodeFormOpen] = useState(false)
 
@@ -31,10 +32,12 @@ export function useEpisodesController(serieId: string) {
       return
     }
     setIsEpisodeFormOpen(false)
+    setIsReload(!!params.isReloadData)
   }
 
   async function getEpisodes() {
     try {
+      setIsReload(false)
       setIsLoading(true)
       const { serieTitle, numberSeasons, episodes } = await episodeService.getAll(serieId)
       setSerieData({ title: serieTitle, numberSeasons })
@@ -47,7 +50,7 @@ export function useEpisodesController(serieId: string) {
 
   useEffect(() => {
     getEpisodes()
-  }, [])
+  }, [isReload])
 
   return {
     serieData,

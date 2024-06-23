@@ -20,7 +20,10 @@ export function EpisodesView() {
 
   if (isEpisodeFormOpen)
     return <EpisodeForm 
-      toBack={() => toggleEpisodeForm({ state: 'close' })} 
+      toBack={isSubmit => toggleEpisodeForm({ 
+        state: 'close', 
+        isReloadData: !!isSubmit 
+      })} 
       serieData={{ 
         id: serieId!, 
         numberSeasons: serieData?.numberSeasons 

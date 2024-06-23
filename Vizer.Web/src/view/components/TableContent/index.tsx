@@ -71,13 +71,14 @@ export function TableContent(props: ITableContentProps) {
                 .map((params, index) => (
                   <tr key={index}>
                     <td>{params.title}</td>
-                    <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
 
                     {props.columnsAdds?.map((_, index) => 
                       <td>
                         {params.dataAdds ? params.dataAdds[index] : 'N/A'}
                       </td>
                     )}
+                    
+                    <td>{new Date(params.dateCreated).toLocaleDateString()}</td>
                     
                     <td>
                       <div className={styles.actions}>

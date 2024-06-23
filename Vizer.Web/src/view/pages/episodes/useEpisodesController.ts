@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Episode, Serie } from '../../../app/entities'
-import { serieService } from '../../../app/services/serieService'
+import { episodeService } from '../../../app/services/episodeService'
+import { IEpisodeData } from '../../../app/services/episodeService/getAll'
+
+interface ISerieData {
+  title: string
+  numberSeasons: number
+}
 
 interface IToggleSerieFormParams {
   id?: string
@@ -9,8 +14,8 @@ interface IToggleSerieFormParams {
 }
 
 export function useEpisodesController(serieId: string) {
-  const [serieData, setSerieData] = useState<Partial<Serie>>()
-  const [episodes, setEpisodes] = useState<Episode[]>([])
+  const [serieData, setSerieData] = useState<ISerieData>()
+  const [episodes, setEpisodes] = useState<IEpisodeData[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isEpisodeModalOpen, setIsEpisodeModalOpen] = useState(false)
   const [isEpisodeFormOpen, setIsEpisodeFormOpen] = useState(false)
@@ -31,10 +36,9 @@ export function useEpisodesController(serieId: string) {
   async function getEpisodes() {
     try {
       setIsLoading(true)
-      const response = await serieService.get(serieId)
-      console.log(response)
-      setSerieData(response)
-      setEpisodes(response.episodes)
+      const { serieTitle, numberSeasons, episodes } = await episodeService.getAll(serieId)
+      setSerieData({ title: serieTitle, numberSeasons })
+      setEpisodes(episodes)
     }
     finally {
       setIsLoading(false)
@@ -48,7 +52,7 @@ export function useEpisodesController(serieId: string) {
   return {
     serieData,
     isLoading,
-    data: episodes.map(episodeTableContentAdapter),
+    data: episodes.map(episodeContentAdapter),
     isEpisodeModalOpen,
     isEpisodeFormOpen,
     toggleEpisodeForm,
@@ -56,11 +60,11 @@ export function useEpisodesController(serieId: string) {
   }
 }
 
-function episodeTableContentAdapter(params: Episode) {
+function episodeContentAdapter(params: IEpisodeData) {
   return {
     id: params.id,
     title: params.title,
-    dateCreated: params.createAt.toLocaleDateString(),
-    dataAdds: [String(params.season), String(params.number)]
+    dateCreated: params.dateCreated,
+    dataAdds: [String(params.season), String(params.episode)]
   }
 }

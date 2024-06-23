@@ -6,10 +6,17 @@ import { useEpisodeFormController } from './useEpisodeFormController'
 
 interface IEpisodeFormProps {
   episodeId?: string
+  numberSeasons?: number
   toBack: (isSubmit?: boolean) => void
 }
 
-export function EpisodeForm({ toBack, episodeId }: IEpisodeFormProps) {
+export function EpisodeForm({ toBack, episodeId, numberSeasons }: IEpisodeFormProps) {
+  numberSeasons ??= 1
+
+  const seasonsSelectOptions = []
+  for (let i = 1; i <= numberSeasons; i++) 
+    seasonsSelectOptions.push({ value: i.toString(), label: `Temporada ${i}` })
+
   const { 
     setFormValue, 
     handleSubmit, 
@@ -41,7 +48,7 @@ export function EpisodeForm({ toBack, episodeId }: IEpisodeFormProps) {
               isRequired
               value={episodeId && formData.season}
               onChange={e => setFormValue('season', e.target.value)} 
-              options={[]}
+              options={seasonsSelectOptions}
             />
             <Input 
               label="Episódio" 

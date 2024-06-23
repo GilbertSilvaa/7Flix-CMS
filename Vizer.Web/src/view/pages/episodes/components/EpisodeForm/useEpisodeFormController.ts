@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Episode } from '../../../../../app/entities'
 import { useToast } from '../../../../../app/hooks/useToast'
 import { episodeService } from '../../../../../app/services/episodeService'
@@ -36,8 +36,18 @@ export function useEpisodeFormController(params: IEpisodeFormControllerParams) {
     try {
       setIsLoading(prev => ({ ...prev, submit: true }))
       
-      await episodeService.create({ idSerie: params.serieId, ...formData })
-      toast.success('Cadastro realizado com sucesso')
+      if (params.episodeEditId) {
+        await episodeService.edit({ 
+          id: params.episodeEditId,  
+          idSerie: params.serieId,
+          ...formData
+        })
+        toast.success('Atualizado com sucesso')
+      }
+      else {
+        await episodeService.create({ idSerie: params.serieId, ...formData })
+        toast.success('Cadastro realizado com sucesso')
+      }
       
       setSuccessSubmit(true)
     }
@@ -48,6 +58,30 @@ export function useEpisodeFormController(params: IEpisodeFormControllerParams) {
       setIsLoading(prev => ({ ...prev, submit: false }))
     }
   }
+
+  useEffect(() => {
+    if (!params.episodeEditId) {
+      setIsLoading(prev => ({ ...prev, data: false }))
+      return
+    }
+
+    (async () => {
+      try {
+        setIsLoading(prev => ({ ...prev, data: true }))
+        setFormData(await episodeService.get({ serieId: 
+          params.serieId, 
+          episodeId: params.episodeEditId! 
+        }))
+      }
+      catch (err) {
+        toast.error('Ops! Houve um erro')
+      }
+      finally {
+        setIsLoading(prev => ({ ...prev, data: false }))
+      }
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.episodeEditId])
 
   return {
     handleSubmit: onSubmit,

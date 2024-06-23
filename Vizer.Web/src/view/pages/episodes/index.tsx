@@ -14,12 +14,14 @@ export function EpisodesView() {
     data,
     isLoading,
     serieData,
+    episodeEditId,
     isEpisodeFormOpen,
     toggleEpisodeForm
   } = useEpisodesController(serieId!)
 
   if (isEpisodeFormOpen)
     return <EpisodeForm 
+      episodeId={episodeEditId}
       toBack={isSubmit => toggleEpisodeForm({ 
         state: 'close', 
         isReloadData: !!isSubmit 
@@ -55,7 +57,7 @@ export function EpisodesView() {
         data={data}
         columnsAdds={['Temporada', 'Episódio']}
         isLoading={isLoading}
-        handleEdit={id => console.log(id)}
+        handleEdit={id =>  toggleEpisodeForm({ id, state: 'open' })}
         handleView={() => {}}
       />
     </div>

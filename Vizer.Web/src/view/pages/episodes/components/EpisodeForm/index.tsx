@@ -1,6 +1,14 @@
 import { LuSaveAll } from 'react-icons/lu'
 import { RiArrowGoBackLine } from 'react-icons/ri'
-import { Button, Input, ParentalRatingOptions, Select, TextArea, VideoForm } from '../../../../components'
+import {
+  Button,
+  Input,
+  Loading,
+  ParentalRatingOptions,
+  Select,
+  TextArea,
+  VideoForm
+} from '../../../../components'
 import styles from './styles.module.css'
 import { useEpisodeFormController } from './useEpisodeFormController'
 
@@ -33,6 +41,25 @@ export function EpisodeForm({ toBack, episodeId, serieData }: IEpisodeFormProps)
 
   if (successSubmit) toBack(true)
 
+  if (isLoading.data) return (
+    <div className={styles.content}>
+      <div className={styles.header}>
+        <button 
+          className={styles.btnBack} 
+          onClick={() => toBack(false)}
+        >
+          <RiArrowGoBackLine/>
+        </button>
+        
+        <h1>Editar Episódio</h1>
+      </div>
+
+      <div className={styles.loading}>
+        <Loading size={1.4}/>
+      </div>
+    </div>
+  )
+
   return (
     <div className={styles.content}>
       <div className={styles.header}>
@@ -43,11 +70,11 @@ export function EpisodeForm({ toBack, episodeId, serieData }: IEpisodeFormProps)
           <RiArrowGoBackLine/>
         </button>
         
-        <h1>Cadastrar Episódio</h1>
+        <h1>{episodeId ? 'Editar' : 'Cadastrar'} Episódio</h1>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <fieldset className={styles.formContent}>
+        <fieldset className={styles.formContent} disabled={isLoading.submit}>
           <div className="double-input">
             <Select 
               label="Temporada" 

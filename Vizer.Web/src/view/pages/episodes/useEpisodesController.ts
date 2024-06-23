@@ -20,6 +20,7 @@ export function useEpisodesController(serieId: string) {
   const [isReload, setIsReload] = useState(false)
   const [isEpisodeModalOpen, setIsEpisodeModalOpen] = useState(false)
   const [isEpisodeFormOpen, setIsEpisodeFormOpen] = useState(false)
+  const [episodeEditId, setEpisodeEditId] = useState<string>()
 
   async function toggleEpisodeModal(id?: string) { 
     console.log(id)
@@ -28,9 +29,11 @@ export function useEpisodesController(serieId: string) {
 
   async function toggleEpisodeForm(params: IToggleSerieFormParams) {
     if (params.state === 'open') {
+      setEpisodeEditId(params.id)
       setIsEpisodeFormOpen(true)
       return
     }
+    setEpisodeEditId(undefined)
     setIsEpisodeFormOpen(false)
     setIsReload(!!params.isReloadData)
   }
@@ -50,12 +53,14 @@ export function useEpisodesController(serieId: string) {
 
   useEffect(() => {
     getEpisodes()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReload])
 
   return {
     serieData,
     isLoading,
     data: episodes.map(episodeContentAdapter),
+    episodeEditId,
     isEpisodeModalOpen,
     isEpisodeFormOpen,
     toggleEpisodeForm,

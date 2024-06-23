@@ -6,15 +6,18 @@ import { useEpisodeFormController } from './useEpisodeFormController'
 
 interface IEpisodeFormProps {
   episodeId?: string
-  numberSeasons?: number
+  serieData: {
+    id: string
+    numberSeasons?: number 
+  }
   toBack: (isSubmit?: boolean) => void
 }
 
-export function EpisodeForm({ toBack, episodeId, numberSeasons }: IEpisodeFormProps) {
-  numberSeasons ??= 1
+export function EpisodeForm({ toBack, episodeId, serieData }: IEpisodeFormProps) {
+  serieData.numberSeasons ??= 1
 
   const seasonsSelectOptions = []
-  for (let i = 1; i <= numberSeasons; i++) 
+  for (let i = 1; i <= serieData.numberSeasons; i++) 
     seasonsSelectOptions.push({ value: i.toString(), label: `Temporada ${i}` })
 
   const { 
@@ -23,7 +26,10 @@ export function EpisodeForm({ toBack, episodeId, numberSeasons }: IEpisodeFormPr
     isLoading,
     formData, 
     successSubmit
-  } = useEpisodeFormController({ episodeEditId: episodeId })
+  } = useEpisodeFormController({ 
+    episodeEditId: episodeId, 
+    serieId: serieData.id 
+  })
 
   if (successSubmit) toBack(true)
 

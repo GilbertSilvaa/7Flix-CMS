@@ -4,11 +4,11 @@ import { useToast } from '../../../../../app/hooks/useToast'
 import { episodeService } from '../../../../../app/services/episodeService'
 
 interface IEpisodeFormControllerParams {
+  serieId: string
   episodeEditId?: string
 }
 
-export function useEpisodeFormController({ episodeEditId }: IEpisodeFormControllerParams) {
-  console.log(episodeEditId)
+export function useEpisodeFormController(params: IEpisodeFormControllerParams) {
   const toast = useToast()
 
   const [isLoading, setIsLoading] = useState({
@@ -36,7 +36,7 @@ export function useEpisodeFormController({ episodeEditId }: IEpisodeFormControll
     try {
       setIsLoading(prev => ({ ...prev, submit: true }))
       
-      await episodeService.create(formData)
+      await episodeService.create({ idSerie: params.serieId, ...formData })
       toast.success('Cadastro realizado com sucesso')
       
       setSuccessSubmit(true)

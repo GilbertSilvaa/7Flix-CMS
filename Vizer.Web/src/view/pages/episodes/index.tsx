@@ -20,8 +20,11 @@ export function EpisodesView() {
 
   if (isEpisodeFormOpen)
     return <EpisodeForm 
-      numberSeasons={serieData?.numberSeasons}
       toBack={() => toggleEpisodeForm({ state: 'close' })} 
+      serieData={{ 
+        id: serieId!, 
+        numberSeasons: serieData?.numberSeasons 
+      }}
     />
 
   return (

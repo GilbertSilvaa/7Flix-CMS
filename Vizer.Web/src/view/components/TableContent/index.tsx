@@ -57,7 +57,7 @@ export function TableContent(props: ITableContentProps) {
         <thead>
           <tr>
             <th>Título</th>
-            {props.columnsAdds?.map(c => <th>{ c }</th>)}
+            {props.columnsAdds?.map((c, index) => <th key={index}>{ c }</th>)}
             <th>Cadastro</th>
             <th>Ações</th>
           </tr>
@@ -73,7 +73,7 @@ export function TableContent(props: ITableContentProps) {
                     <td>{params.title}</td>
 
                     {props.columnsAdds?.map((_, index) => 
-                      <td>
+                      <td key={index}>
                         {params.dataAdds ? params.dataAdds[index] : 'N/A'}
                       </td>
                     )}
@@ -95,8 +95,9 @@ export function TableContent(props: ITableContentProps) {
                           onClick={() => props.handleEdit(params.id)} 
                         />
 
-                        {props.btnsAdds?.map(b => 
+                        {props.btnsAdds?.map((b, index) => 
                           <IconButton 
+                            key={index}
                             icon={b.icon} 
                             color={b.color}
                             popoverText={b.popoverText}
@@ -111,7 +112,7 @@ export function TableContent(props: ITableContentProps) {
                   <td style={{padding: '1rem'}}>Sem registros encontrados</td>
                   <td></td>
                   <td></td>
-                  {props.columnsAdds?.map(() => <td></td>)}
+                  {props.columnsAdds?.map((_, index) => <td key={index}></td>)}
                 </tr>
             )
           }

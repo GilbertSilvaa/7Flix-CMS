@@ -1,4 +1,5 @@
+export * from './dashboard'
+export * from './episodes'
 export * from './movies'
 export * from './series'
-export * from './episodes'
-export * from './dashboard'
+export * from './videoTest'

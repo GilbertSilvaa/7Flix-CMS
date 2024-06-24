@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Toast } from '../view/components/'
 import { Layout } from '../view/layout'
-import { 
-  DashboardView, 
-  EpisodesView, 
-  MoviesView, 
-  SeriesView 
+import {
+  DashboardView,
+  EpisodesView,
+  MoviesView,
+  SeriesView,
+  VideoTestView
 } from '../view/pages'
 
 export function Router() {
@@ -18,6 +19,7 @@ export function Router() {
           <Route path="/movies" element={<MoviesView/>}/>
           <Route path="/series" element={<SeriesView/>}/>
           <Route path="/episodes/:serieId" element={<EpisodesView/>}/>
+          <Route path="/video-test" element={<VideoTestView/>}/>
         </Routes> 
       </Layout>
     </BrowserRouter>

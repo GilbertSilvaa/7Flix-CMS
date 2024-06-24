@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react'
-import { BiHomeAlt, BiMovie, BiMoviePlay } from 'react-icons/bi'
+import { BiHomeAlt, BiMovie, BiMoviePlay, BiTestTube } from 'react-icons/bi'
 import { useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import styles from './styles.module.css'
@@ -23,6 +23,11 @@ const PAGES = {
     title: 'Séries',
     Icon: BiMoviePlay,
     path: '/series'
+  },
+  videoTest:{
+    title: 'Validação',
+    Icon: BiTestTube,
+    path: '/video-test'
   }
 }
 
@@ -45,6 +50,10 @@ export function Layout({ children }: ILayoutProps) {
 
     if (currentRoute === 'episodes') {
       setCurrentPage('series')
+      return
+    }
+    if (currentRoute === 'video-test') {
+      setCurrentPage('videoTest')
       return
     }
     if (!currentRoute) {

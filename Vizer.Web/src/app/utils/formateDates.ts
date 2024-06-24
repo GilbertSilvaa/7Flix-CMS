@@ -3,5 +3,5 @@ export function secondsToHoursMinutues(seconds: number): string {
   const hours = Math.floor(minutesTotal / 60)
   const minutes = minutesTotal - (60 * hours)
 
-  return `${hours}h ${minutes}min`
+  return `${hours}h ${Math.round(minutes)}min`
 }

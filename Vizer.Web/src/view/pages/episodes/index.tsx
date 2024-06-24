@@ -3,6 +3,7 @@ import { RiArrowGoBackLine } from 'react-icons/ri'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, TableContent } from '../../components'
 import { EpisodeForm } from './components/EpisodeForm'
+import { EpisodeModal } from './components/EpisodeModal'
 import styles from './styles.module.css'
 import { useEpisodesController } from './useEpisodesController'
 
@@ -15,8 +16,11 @@ export function EpisodesView() {
     isLoading,
     serieData,
     episodeEditId,
+    episodeSelected,
     isEpisodeFormOpen,
-    toggleEpisodeForm
+    isEpisodeModalOpen,
+    toggleEpisodeForm,
+    toggleEpisodeModal
   } = useEpisodesController(serieId!)
 
   if (isEpisodeFormOpen)
@@ -43,7 +47,7 @@ export function EpisodesView() {
             <RiArrowGoBackLine/>
           </button>
           
-          <h1>{isLoading ? 'Episódios...' : `${serieData?.title} (Episódios)`}</h1>
+          <h1>{isLoading ? 'Episódios...' : `Episódios ${serieData?.title}`}</h1>
         </div>
         <Button 
           color="var(--blue-2)" 
@@ -58,8 +62,15 @@ export function EpisodesView() {
         columnsAdds={['Temporada', 'Episódio']}
         isLoading={isLoading}
         handleEdit={id =>  toggleEpisodeForm({ id, state: 'open' })}
-        handleView={() => {}}
+        handleView={id => toggleEpisodeModal(id)}
       />
+
+      {isEpisodeModalOpen && 
+        <EpisodeModal 
+          data={episodeSelected} 
+          handleClose={() => toggleEpisodeModal()}
+        />
+      }
     </div>
   )
 }

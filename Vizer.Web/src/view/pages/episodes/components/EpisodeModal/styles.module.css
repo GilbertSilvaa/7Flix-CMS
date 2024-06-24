@@ -1,0 +1,47 @@
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-top: .5rem;
+}
+
+.tag {
+  background-color: var(--gray-2);
+  border-radius: .25rem;
+  padding: 0.1rem .5rem;
+  width: min-content;
+  max-width: 30%;
+  text-wrap: nowrap;
+}
+
+.poster {
+  width: 30%;
+  max-height: 400px;
+  border-radius: .6rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: .75rem;
+}
+
+.synopsis {
+  font-size: .9rem;
+  line-height: 1.4rem;
+  color: var(--white-2);
+  margin-bottom: 1.5rem;
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,6 +1,6 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { BiHomeAlt, BiMovie, BiMoviePlay } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import styles from './styles.module.css'
 
@@ -29,15 +29,31 @@ const PAGES = {
 type TPages = keyof typeof PAGES
 
 export function Layout({ children }: ILayoutProps) {
+  const location = useLocation()
   const navigate = useNavigate()
 
-  const [currentPage, setCurrentPage] = useState<TPages>('dashboard')
+  const [currentPage, setCurrentPage] = useState<TPages>()
 
   function handleChangePage(page: TPages) {
     const { path } = PAGES[page]
     setCurrentPage(page)
     navigate(path, { replace: true })
   }
+
+  useEffect(() => {
+    const currentRoute = location.pathname.split('/')[1];
+
+    if (currentRoute === 'episodes') {
+      setCurrentPage('series')
+      return
+    }
+    if (!currentRoute) {
+      setCurrentPage('dashboard')
+      return
+    }
+    
+    setCurrentPage(currentRoute as TPages)
+  }, [location.pathname])
 
   return (
     <div className={styles.content}>

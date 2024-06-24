@@ -57,7 +57,7 @@ public class SerieService
 
     response.Episodes = [.. response.Episodes
       .OrderByDescending(e => e.Season)
-      .OrderByDescending(e => e.Number)
+      .ThenByDescending(e => e.Number)
     ];  
     return GetAllEpisodesResponseDto.FromEntity(response);
   }

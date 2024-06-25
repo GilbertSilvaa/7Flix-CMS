@@ -21,6 +21,12 @@
   align-items: flex-start;
 }
 
+.inputBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .videoContent {
   flex: 1;
   margin-top: 2.5rem;

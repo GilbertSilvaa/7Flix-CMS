@@ -2,15 +2,15 @@ import { useRef } from 'react'
 import { AiOutlineClear } from 'react-icons/ai'
 import { IoPlay } from 'react-icons/io5'
 import { secondsToHHMMSS } from '../../../app/utils'
-import { Button, IconButton, Input } from '../../components'
+import { Button, IconButton, Input, Select } from '../../components'
 import styles from './styles.module.css'
-import { useVideoTestController } from './useVideoTestController'
+import { useVideoTestController, VIDEO_TYPES } from './useVideoTestController'
 
 export function VideoTestView() {
   const player = useRef<HTMLVideoElement>(null)
   
-  const { 
-    setUrlVideo,
+  const {
+    setVideoAttr,
     handlePlayVideo,
     playerLogs,
     clearPlayerLogs
@@ -23,19 +23,33 @@ export function VideoTestView() {
       </div>
       <div className={styles.container}>
         <form className={styles.search} onSubmit={handlePlayVideo}>
-          <Input 
-            label='Video (URL)' 
-            placeholder='https://www.cdn.com/vod/video.mp4'
-            onChange={e => setUrlVideo(e.target.value)}
-            isRequired
-          />
+          <div className={styles.inputBox}>
+            <div style={{ width: '73%' }}>
+              <Input 
+                label='Video (URL)' 
+                placeholder='https://www.cdn.com/vod/video.mp4'
+                onChange={e =>  setVideoAttr('src', e.target.value)}
+                isRequired
+              />
+            </div>
+
+            <div style={{ width: '25%' }}>
+              <Select 
+                label="Media Type" 
+                options={VIDEO_TYPES.map(t => ({ label: t, value: t }))}
+                onChange={e => setVideoAttr('type', e.target.value)}
+                isRequired
+              />
+            </div>
+          </div>
+
           <Button color='var(--green)'>
             <IoPlay/> Play
           </Button>
         </form>  
 
         <div className={styles.videoContent}>
-          <video ref={player} src="" controls>
+          <video ref={player} controls>
           </video>
 
           <section className={styles.logsContent}>

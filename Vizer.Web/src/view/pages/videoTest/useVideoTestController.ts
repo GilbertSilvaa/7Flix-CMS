@@ -1,4 +1,19 @@
-import { FormEvent, useEffect, useState } from 'react'
+import {
+  FormEvent,
+  useEffect,
+  useState
+} from 'react'
+
+export const VIDEO_TYPES = [
+  'video/mp4', 
+  'video/ogg', 
+  'application/x-mpegURL'
+] as const
+
+interface IVideoAttrData {
+  src: string
+  type: typeof VIDEO_TYPES[number]
+}
 
 interface ILogPlayer {
   type: 'error' | 'status'
@@ -8,14 +23,28 @@ interface ILogPlayer {
 
 export function useVideoTestController(player: HTMLVideoElement | null) {
   const [playerLogs, setPlayerLogs] = useState<ILogPlayer[]>([]) 
-  const [urlVideo, setUrlVideo] = useState('')
+  const [videoData, setVideoData] = useState<IVideoAttrData>({
+    src: '',
+    type: 'video/mp4' 
+  })
+
+  const setVideoAttr = (
+    field: keyof typeof videoData,
+    value: unknown
+  ) => setVideoData(prev => ({ ...prev, [field]: value }))
   
   const clearPlayerLogs = () => setPlayerLogs([])
   
   function handlePlayVideo(e: FormEvent) {
     e.preventDefault()
 
-    player?.setAttribute('src', urlVideo)
+    if (player?.children[0]) player?.removeChild(player?.children[0])
+
+    const source = document.createElement('source')
+    source.src = videoData.src
+    source.type = videoData.type
+
+    player?.appendChild(source)
     player?.load()
     player?.play()
   }
@@ -39,7 +68,7 @@ export function useVideoTestController(player: HTMLVideoElement | null) {
   }, [player])
 
   return {
-    setUrlVideo,
+    setVideoAttr,
     handlePlayVideo,
     playerLogs,
     clearPlayerLogs

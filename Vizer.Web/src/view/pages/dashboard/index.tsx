@@ -2,6 +2,7 @@ import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 import { BiSolidCameraMovie } from 'react-icons/bi';
 import { MdLocalMovies, MdMovieFilter } from 'react-icons/md';
+import { RiFolderVideoFill } from 'react-icons/ri';
 import { CardQuantity } from './components/CardQuantity';
 import styles from './styles.module.css';
 
@@ -19,6 +20,13 @@ const CARDS = [
     label: 'Qtde. Séries',
     backgroundColor: '#b35ff7',
     backgroundColorAlt: '#c993f5'
+  },
+  {
+    Icon: RiFolderVideoFill,
+    quantity: 590,
+    label: 'Qtde. Episódios',
+    backgroundColor: '#6550ff',
+    backgroundColorAlt: '#8a7bfd'
   },
   {
     Icon: BiSolidCameraMovie,
@@ -55,7 +63,7 @@ export function DashboardView() {
           data={{
             labels: ['Qtde. Conteúdos'],
             datasets: CARDS.concat(CARDS)
-              .filter((c, index) => index != CARDS.length - 1)
+              .filter((_, index) => index != CARDS.length - 1)
               .map(c => ({
                 label: c.label,
                 data: [c.quantity],

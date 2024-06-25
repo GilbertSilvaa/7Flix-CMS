@@ -67,14 +67,11 @@
   gap: .75rem;
   margin-top: .5rem;
   border-radius: .25rem;
-}
 
-.logsContent .error {
-  background-color: #9d161648;
-}
-
-.logsContent .info {
-  background-color: #3d83e621;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .clearBtn {
@@ -82,4 +79,15 @@
   margin-top: .5rem;
   display: flex;
   justify-content: flex-end;
+}
+
+.time {
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.logMessage {
+  max-width: 80%;             
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useState } from 'react'
 interface ILogPlayer {
   type: 'error' | 'status'
   message: string
+  time: number
 }
 
 export function useVideoTestController(player: HTMLVideoElement | null) {
@@ -21,18 +22,19 @@ export function useVideoTestController(player: HTMLVideoElement | null) {
 
   useEffect(() => {
     player?.addEventListener('playing', () => {
-      const log = {type: 'status', message: 'Play'} as ILogPlayer
+      const log = handlePlayerStatus('Play', player?.currentTime)
       setPlayerLogs(prev => [...prev, log])
     })
 
     player?.addEventListener('pause', () => {
-      const log = {type: 'status', message: 'Pause'} as ILogPlayer
+      const log = handlePlayerStatus('Pause', player?.currentTime)
       setPlayerLogs(prev => [...prev, log])
     })
 
     player?.addEventListener('error', e => {
       e.stopImmediatePropagation()
-      setPlayerLogs(prev => [...prev, handlePlayerError(player?.error)]) 
+      const log = handlePlayerError(player?.error, player.currentTime)
+      setPlayerLogs(prev => [...prev, log]) 
     })
   }, [player])
 
@@ -44,10 +46,30 @@ export function useVideoTestController(player: HTMLVideoElement | null) {
   }
 }
 
-function handlePlayerError(error: MediaError | null) { 
+function handlePlayerError(
+  error: MediaError | null, 
+  time: number
+) : ILogPlayer 
+{ 
   const message = error
     ? `Code: ${error?.code} | ${error?.message}`
     : 'Não foi possível reproduzir o vídeo'
 
-  return {type: 'error', message} as ILogPlayer
+  return {
+    time,
+    message, 
+    type: 'error'
+  }
+}
+
+function handlePlayerStatus(
+  message: string, 
+  time: number
+) : ILogPlayer 
+{
+  return { 
+    time,
+    message,
+    type: 'status'
+  }
 }

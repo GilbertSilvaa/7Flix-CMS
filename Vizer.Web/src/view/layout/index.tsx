@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react'
 import { BiHomeAlt, BiMovie, BiMoviePlay, BiTestTube } from 'react-icons/bi'
+import { RxHamburgerMenu } from 'react-icons/rx'
 import { useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import styles from './styles.module.css'
@@ -38,11 +39,13 @@ export function Layout({ children }: ILayoutProps) {
   const navigate = useNavigate()
 
   const [currentPage, setCurrentPage] = useState<TPages>()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   function handleChangePage(page: TPages) {
     const { path } = PAGES[page]
     setCurrentPage(page)
     navigate(path, { replace: true })
+    setIsMenuOpen(screen.width >= 900)
   }
 
   useEffect(() => {
@@ -66,7 +69,20 @@ export function Layout({ children }: ILayoutProps) {
 
   return (
     <div className={styles.content}>
-      <div className={styles.menu}>
+      <button 
+        onClick={() => setIsMenuOpen(prev => !prev)}
+        className={styles.menuBurger}
+      >
+        <RxHamburgerMenu size={20}/>
+      </button>
+
+      <div className={styles.menu} style={{display: isMenuOpen ? 'flex': 'none'}}>
+        <button 
+          onClick={() => setIsMenuOpen(prev => !prev)}
+          className={styles.menuBurgerClose}
+        >
+          <RxHamburgerMenu size={20}/>
+        </button>
 
         <div className={styles.options}>
           <div className={styles.logo}> 

@@ -12,6 +12,10 @@
   border-radius: 8px;
   background-color: #ffffff0c;
   overflow: hidden;
+
+  @media screen and (width < 900px) {
+    margin-top: 4rem;
+  }
 }
 
 .menu {
@@ -19,7 +23,24 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+
+  @media screen and (width < 900px) {
+    position: absolute;
+    z-index: 999;
+    background-color: var(--black);
+    padding-right: 1rem;
+    display: none;
+    border-right: .25rem solid var(--black-2);
+  }
+
+  @media screen and (width < 450px) {
+    width: 100%;
+  }
+
+  @media screen and (width > 900px) {
+    display: flex !important;
+  }
 }
 
 .menu .logo {
@@ -60,4 +81,39 @@
 .menu .options button.active {
   background-color: #f1a50e66;
   border-left: .4rem solid var(--yellow);
+}
+
+.menuBurger {
+  position: fixed;
+  padding: .6rem ;
+  background-color: var(--black-2);
+  border-radius: .5rem;
+  top: .6rem;
+  left: .6rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (width > 900px) {
+    display: none;
+  }
+}
+
+.menuBurgerClose {
+  position: relative;
+  padding: .6rem ;
+  background-color: var(--black-3);
+  border-radius: .5rem;
+  top: .6rem;
+  left: .6rem;
+  width: min-content;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (width > 900px) {
+    display: none;
+  }
 }

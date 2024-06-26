@@ -2,7 +2,9 @@
   border-radius: 0.75rem;
   width: 100%;
   max-width: 300px;
+  min-width: 200px;
   background-color: var(--green);
+  flex: content;
 
   -webkit-box-shadow: 4px 4px 8px 0px rgba(163, 163, 163, 0.233);
   -moz-box-shadow: 4px 4px 8px 0px rgba(163, 163, 163, 0.233);
@@ -13,6 +15,15 @@
     main .quantity {
       transform: scale(1.2);
     }
+  }
+
+  @media screen and (width < 1250px) {
+    min-width: 45%;
+  }
+
+  @media screen and (width < 600px) {
+    min-width: 95%;
+    margin-right: .75rem;
   }
 }
 

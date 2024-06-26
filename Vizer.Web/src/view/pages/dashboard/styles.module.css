@@ -1,11 +1,14 @@
 .content {
   position: relative;
   height: 100%;
+  overflow: auto;
 }
 
 .cards {
+  width: 100%;
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .charts {
@@ -17,4 +20,9 @@
 
   display: flex;
   align-items: flex-end;
+
+  @media screen and (width < 1180px) {
+    height: 50%;
+    position: relative;
+  }
 }

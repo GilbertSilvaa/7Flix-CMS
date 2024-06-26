@@ -7,7 +7,7 @@ import { useDashboardController } from './useDashboardController';
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 export function DashboardView() {
-  const { cards } = useDashboardController()
+  const { cards, isLoading } = useDashboardController()
 
   return (
     <div className={styles.content}>
@@ -23,6 +23,7 @@ export function DashboardView() {
             quantity={c.quantity}
             label={c.label}
             backgroundColor={c.backgroundColor}
+            isLoading={isLoading}
           />
         ))}
       </div>

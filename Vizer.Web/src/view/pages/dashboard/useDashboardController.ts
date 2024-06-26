@@ -37,14 +37,22 @@ const CARDS_BASE = [
 
 export function useDashboardController() {
   const [cards, setCards] = useState(CARDS_BASE)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     (async () => {
-      const response = await dashboardService.get()
-      setCards(CARDS_BASE.map((card, index) => 
-        ({...card, quantity: Object.values(response)[index]})))
+      try {
+        setIsLoading(true)
+
+        const response = await dashboardService.get()
+        setCards(CARDS_BASE.map((card, index) => 
+          ({...card, quantity: Object.values(response)[index]})))
+      }
+      finally {
+        setIsLoading(false)
+      }
     })()
   }, [])
 
-  return { cards }
+  return { cards, isLoading }
 }

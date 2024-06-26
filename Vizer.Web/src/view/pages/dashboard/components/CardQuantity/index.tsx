@@ -1,4 +1,5 @@
 import { IconType } from 'react-icons'
+import { ImSpinner8 } from 'react-icons/im'
 import styles from './styles.module.css'
 
 interface ICardQuatityProps {
@@ -6,6 +7,7 @@ interface ICardQuatityProps {
   quantity: number
   label: string
   backgroundColor: string
+  isLoading?: boolean
 }
 
 export function CardQuantity({ backgroundColor, ...props }: ICardQuatityProps) {
@@ -16,9 +18,11 @@ export function CardQuantity({ backgroundColor, ...props }: ICardQuatityProps) {
     >
       <main>
         <props.Icon size={64} className={styles.icon}/>
-        <span className={styles.quantity}>
-          { props.quantity }
-        </span>
+
+        {props.isLoading 
+          ? <ImSpinner8 size={24} className={styles.spinner} />
+          : <span className={styles.quantity}>{ props.quantity }</span>
+        }
       </main>
       
       <footer>

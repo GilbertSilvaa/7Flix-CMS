@@ -4,6 +4,10 @@
   width: 100%;
   background-color: var(--black);
   table-layout: auto;
+
+  @media screen and (width < 450px) {
+    font-size: .9rem;
+  }
 }
 
 .table th {
@@ -26,6 +30,10 @@
 .table td{
   padding: .5rem .75rem;
   border: 1px solid var(--gray);
+
+  @media screen and (width < 450px) {
+    padding: .5rem;
+  }
 }
 
 .table tbody tr:last-child td {
@@ -43,6 +51,10 @@
   justify-content: center;
   align-items: center;
   gap: .6rem;
+
+  @media screen and (width < 450px) {
+    flex-direction: column;
+  }
 }
 
 .footer {
@@ -86,4 +98,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (width < 1180px) {
+    width: 30%;
+  }
+
+  @media screen and (width < 900px) {
+    width: 100%;
+  }
 }

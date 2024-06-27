@@ -23,6 +23,16 @@
 
   position: relative;
   animation: open 0.7s ease forwards;
+
+  @media screen and (width < 1180px) {
+    width: 75%;
+  }
+  @media screen and (width < 900px) {
+    width: 85%;
+  }
+  @media screen and (width < 450px) {
+    width: 90%;
+  }
 }
 
 .content .header {

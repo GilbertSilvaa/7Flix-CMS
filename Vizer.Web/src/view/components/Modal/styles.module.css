@@ -43,6 +43,15 @@
   margin-bottom: 0.75rem;
 }
 
+.content .header h1 {
+  @media screen and (width < 600px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+  }
+}
+
 .content .header button {
   background-color: transparent;
   border-radius: 50%;

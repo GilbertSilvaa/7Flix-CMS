@@ -1,6 +1,7 @@
 .content {
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .btnBack {
@@ -36,6 +37,10 @@
   flex-direction: column;
   gap: 1.25rem;
   overflow: auto;
+
+  @media screen and (width < 1100px) {
+    height: 90%;
+  }
 }
 
 .loading { 

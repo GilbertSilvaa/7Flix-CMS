@@ -57,7 +57,9 @@ export function TableContent(props: ITableContentProps) {
         <thead>
           <tr>
             <th>Título</th>
-            {props.columnsAdds?.map((c, index) => <th key={index}>{ c }</th>)}
+            {props.columnsAdds?.map((c, index) => 
+              <th key={index} className={styles.columnsAdds}>{ c }</th>)
+            }
             <th>Cadastro</th>
             <th>Ações</th>
           </tr>
@@ -73,7 +75,7 @@ export function TableContent(props: ITableContentProps) {
                     <td>{params.title}</td>
 
                     {props.columnsAdds?.map((_, index) => 
-                      <td key={index}>
+                      <td key={index} className={styles.columnsAdds}>
                         {params.dataAdds ? params.dataAdds[index] : 'N/A'}
                       </td>
                     )}
@@ -111,8 +113,10 @@ export function TableContent(props: ITableContentProps) {
               : <tr>
                   <td style={{padding: '1rem'}}>Sem registros encontrados</td>
                   <td></td>
+                  {props.columnsAdds?.map((_, index) => 
+                    <td key={index} className={styles.columnsAdds}></td>)
+                  }
                   <td></td>
-                  {props.columnsAdds?.map((_, index) => <td key={index}></td>)}
                 </tr>
             )
           }

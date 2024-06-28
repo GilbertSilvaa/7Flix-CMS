@@ -24,7 +24,7 @@ export function VideoTestView() {
       <div className={styles.container}>
         <form className={styles.search} onSubmit={handlePlayVideo}>
           <div className={styles.inputBox}>
-            <div style={{ width: '73%' }}>
+            <div className={styles.input}>
               <Input 
                 label='Video (URL)' 
                 placeholder='https://www.cdn.com/vod/video.mp4'
@@ -33,7 +33,7 @@ export function VideoTestView() {
               />
             </div>
 
-            <div style={{ width: '25%' }}>
+            <div className={styles.select}>
               <Select 
                 label="Media Type" 
                 options={VIDEO_TYPES.map(t => ({ label: t, value: t }))}

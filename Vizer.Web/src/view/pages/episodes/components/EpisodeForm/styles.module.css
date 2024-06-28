@@ -2,6 +2,10 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+
+  @media screen and (height < 700px) {
+    padding-bottom: 1rem;
+  }
 }
 
 .btnBack {
@@ -21,6 +25,15 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.header h1 {
+  @media screen and (width < 450px) {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 75%;
+  }
 }
 
 .form {

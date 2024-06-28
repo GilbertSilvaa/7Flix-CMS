@@ -52,7 +52,7 @@
   align-items: center;
   gap: .6rem;
 
-  @media screen and (width < 450px) {
+  @media screen and (width < 600px) {
     flex-direction: column;
   }
 }
@@ -105,5 +105,11 @@
 
   @media screen and (width < 900px) {
     width: 100%;
+  }
+}
+
+.columnsAdds {
+  @media screen and (width < 600px) {
+    display: none;
   }
 }

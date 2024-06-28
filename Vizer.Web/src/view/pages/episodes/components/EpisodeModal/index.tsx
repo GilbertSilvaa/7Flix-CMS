@@ -20,7 +20,7 @@ export function EpisodeModal({ data, handleClose }: IEpisodeModalProps) {
               className={styles.poster} 
             />
           
-            <div style={{ width: '68%' }}>
+            <div className={styles.details}>
               <div className={styles.flex}>
                 <ParentalRating pr={data?.parentalRating as never}/>
                 <div className={styles.tag}>T{data.season}</div>

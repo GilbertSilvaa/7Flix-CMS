@@ -25,6 +25,26 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (width < 600px) {
+    flex-direction: column;
+  }
+}
+
+.inputBox .input {
+  width: 73%;
+
+  @media screen and (width < 600px) {
+    width: 100%;
+  }
+}
+.inputBox .select {
+  width: 25%;
+
+  @media screen and (width < 600px) {
+    margin-top: 1rem;
+    width: 100%;
+  }
 }
 
 .videoContent {
@@ -34,6 +54,10 @@
   max-height: 78%;
   display: flex;
   gap: 2%;
+
+  @media screen and (width < 800px) {
+    flex-direction: column;
+  }
 }
 
 .videoContent video {
@@ -42,6 +66,10 @@
   border-radius: .5rem;
   background-color: #000;
   flex: 1;
+
+  @media screen and (width < 800px) {
+    width: 100%;
+  }
 }
 
 .logsContent {
@@ -52,6 +80,10 @@
   padding: .9rem;
   display: flex;
   flex-direction: column;
+
+  @media screen and (width < 800px) {
+    display: none;
+  }
 }
 
 .logs {

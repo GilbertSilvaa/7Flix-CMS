@@ -1,19 +1,20 @@
 import { useRef } from 'react'
 import { AiOutlineClear } from 'react-icons/ai'
 import { IoPlay } from 'react-icons/io5'
+import { VIDEO_TYPES } from '../../../app/config/constants'
 import { secondsToHHMMSS } from '../../../app/utils'
 import { Button, IconButton, Input, Select } from '../../components'
 import styles from './styles.module.css'
-import { useVideoTestController, VIDEO_TYPES } from './useVideoTestController'
+import { useVideoTestController } from './useVideoTestController'
 
 export function VideoTestView() {
-  const player = useRef<HTMLVideoElement>(null)
+  const player = useRef<HTMLDivElement>(null)
   
   const {
     setVideoAttr,
     handlePlayVideo,
-    playerLogs,
-    clearPlayerLogs
+    clearPlayerLogs,
+    playerLogs
   } = useVideoTestController(player.current)
 
   return (
@@ -49,8 +50,9 @@ export function VideoTestView() {
         </form>  
 
         <div className={styles.videoContent}>
-          <video ref={player} controls>
-          </video>
+          <div data-vjs-player className={styles.video}>
+            <div ref={player}></div>
+          </div>
 
           <section className={styles.logsContent}>
             <h4>Logs</h4>

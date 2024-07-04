@@ -1,14 +1,7 @@
-import {
-  FormEvent,
-  useEffect,
-  useState
-} from 'react'
-
-export const VIDEO_TYPES = [
-  'video/mp4', 
-  'video/ogg', 
-  'application/x-mpegURL'
-] as const
+import { FormEvent, useState } from 'react'
+import videojs from 'video.js'
+import 'video.js/dist/video-js.css'
+import { VIDEO_TYPES } from '../../../app/config/constants'
 
 interface IVideoAttrData {
   src: string
@@ -21,7 +14,7 @@ interface ILogPlayer {
   time: number
 }
 
-export function useVideoTestController(player: HTMLVideoElement | null) {
+export function useVideoTestController(player: HTMLDivElement | null) {
   const [playerLogs, setPlayerLogs] = useState<ILogPlayer[]>([]) 
   const [videoData, setVideoData] = useState<IVideoAttrData>({
     src: '',
@@ -31,7 +24,7 @@ export function useVideoTestController(player: HTMLVideoElement | null) {
   const setVideoAttr = (
     field: keyof typeof videoData,
     value: unknown
-  ) => setVideoData(prev => ({ ...prev, [field]: value }))
+  ) => setVideoData(prev => ({...prev, [field]: value}))
   
   const clearPlayerLogs = () => setPlayerLogs([])
   
@@ -40,65 +33,60 @@ export function useVideoTestController(player: HTMLVideoElement | null) {
 
     if (player?.children[0]) player?.removeChild(player?.children[0])
 
-    const source = document.createElement('source')
-    source.src = videoData.src
-    source.type = videoData.type
+    const videoElement = document.createElement('video-js')
+    videoElement.classList.add('vjs-big-play-centered')
+    player?.appendChild(videoElement)
 
-    player?.appendChild(source)
-    player?.load()
-    player?.play()
+    const options = {
+      fluid: true,
+      autoplay: true,
+      controls: true,
+      responsive: true,
+      sources: [{src: videoData.src, type: videoData.type}]
+    }
+
+    const video = videojs(videoElement, options)
+
+    video.on('error', () => {
+      const log = playerErrorLog(video.error_ as MediaError, video.currentTime())
+      setPlayerLogs(prev => [...prev, log])
+    })
+
+    video.on('playing', () => {
+      const log = playerStatusLog('Play', video.currentTime())
+      setPlayerLogs(prev => [...prev, log])
+    })
+
+    video.on('pause', () => {
+      const log = playerStatusLog('Pause', video.currentTime())
+      setPlayerLogs(prev => [...prev, log])
+    })
   }
-
-  useEffect(() => {
-    player?.addEventListener('playing', () => {
-      const log = handlePlayerStatus('Play', player?.currentTime)
-      setPlayerLogs(prev => [...prev, log])
-    })
-
-    player?.addEventListener('pause', () => {
-      const log = handlePlayerStatus('Pause', player?.currentTime)
-      setPlayerLogs(prev => [...prev, log])
-    })
-
-    player?.addEventListener('error', e => {
-      e.stopImmediatePropagation()
-      const log = handlePlayerError(player?.error, player.currentTime)
-      setPlayerLogs(prev => [...prev, log]) 
-    })
-  }, [player])
 
   return {
     setVideoAttr,
     handlePlayVideo,
-    playerLogs,
-    clearPlayerLogs
+    clearPlayerLogs,
+    playerLogs
   }
 }
 
-function handlePlayerError(
-  error: MediaError | null, 
-  time: number
-) : ILogPlayer 
-{ 
+function playerErrorLog(error: MediaError, time?: number) : ILogPlayer { 
   const message = error
     ? `Code: ${error?.code} | ${error?.message}`
     : 'Não foi possível reproduzir o vídeo'
 
   return {
-    time,
     message, 
-    type: 'error'
+    type: 'error',
+    time: time ?? 0
   }
 }
 
-function handlePlayerStatus(
-  message: string, 
-  time: number
-) : ILogPlayer 
-{
-  return { 
-    time,
+function playerStatusLog(message: string, time?: number) : ILogPlayer {
+  return {
     message,
-    type: 'status'
+    type: 'status',
+    time: time ?? 0
   }
 }

@@ -60,7 +60,7 @@
   }
 }
 
-.videoContent video {
+.videoContent .video {
   width: 70%;
   height: 100%;
   border-radius: .5rem;

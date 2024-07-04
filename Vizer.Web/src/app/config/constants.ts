@@ -11,3 +11,9 @@ export const VIDEO_FORMATS = [
   'vp8',
   'vp9'
 ]
+
+export const VIDEO_TYPES = [
+  'video/mp4', 
+  'video/ogg', 
+  'application/x-mpegURL'
+] as const

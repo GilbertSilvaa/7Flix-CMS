@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Movie } from '../../../../../app/entities';
 import { useToast } from '../../../../../app/hooks/useToast';
+import { imdbService } from '../../../../../app/services/imbdService';
 import { movieService } from '../../../../../app/services/movieService';
 
 interface IMovieFormControllerParams {
@@ -10,9 +11,12 @@ interface IMovieFormControllerParams {
 export function useMovieFormController({ movieEditId }: IMovieFormControllerParams) {
   const toast = useToast()
 
+  const [imdbId, setImdbId] = useState('')
+  const [successSubmit, setSuccessSubmit] = useState(false)
   const [isLoading, setIsLoading] = useState({
     submit: false,
-    data: true
+    data: true,
+    imdb: false
   })
   const [formData, setFormData] = useState<Partial<Movie>>({
     parentalRating: 0,
@@ -22,12 +26,24 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
       streamFormat: ''
     }
   })
-  const [successSubmit, setSuccessSubmit] = useState(false)
 
   const setFormValue = (
     field: keyof typeof formData,
     value: unknown
   ) => setFormData(prev => ({ ...prev, [field]: value }))
+
+  async function loadDataByImdb() {
+    try {
+      setIsLoading(prev => ({ ...prev, imdb: true }))
+      setFormData(await imdbService.getMovie(imdbId))
+    }
+    catch (err) {
+      toast.error('Ops! houve um erro')
+    }
+    finally {
+      setIsLoading(prev => ({ ...prev, imdb: false }))
+    }
+  }
   
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
@@ -44,6 +60,7 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
         await movieService.create(formData)
         toast.success('Cadastro realizado com sucesso')
       }
+
       setSuccessSubmit(true)
     }
     catch (err) {
@@ -80,6 +97,9 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
     setFormValue,
     isLoading,
     formData,
-    successSubmit
+    successSubmit,
+    imdbId,
+    setImdbId,
+    loadDataByImdb
   }
 }

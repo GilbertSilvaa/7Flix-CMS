@@ -38,7 +38,7 @@ export function useMovieFormController({ movieEditId }: IMovieFormControllerPara
       setFormData(await imdbService.getMovie(imdbId))
     }
     catch (err) {
-      toast.error('Ops! houve um erro')
+      toast.warning('Ops! Parâmetro inválido')
     }
     finally {
       setIsLoading(prev => ({ ...prev, imdb: false }))

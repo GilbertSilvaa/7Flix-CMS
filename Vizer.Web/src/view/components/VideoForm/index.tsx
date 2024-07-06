@@ -9,15 +9,26 @@ interface IVideoFormProps {
   videoData: Video
 }
 
-export function VideoForm({ 
-  videoData,
-  handleChangeVideoData
-}: IVideoFormProps) {
+export function VideoForm({ videoData, handleChangeVideoData }: IVideoFormProps) {
 
   const setFormValue = (
     field: keyof typeof videoData,
     value: unknown
   ) => handleChangeVideoData({ ...videoData, [field]: value })
+
+  // convert to seconds: 2h10m
+  function convertHHmmToSeconds(duration: string) {
+    const [hoursStr, minutesStr] = duration.split('h')
+    const [hours, minutes] = [parseInt(hoursStr), parseInt(minutesStr)]
+    const totalSeconds = (hours * 3600) + (minutes * 60)
+    
+    if (!isNaN(totalSeconds) && duration.split('').pop() === 'm') {
+      setFormValue('duration', totalSeconds)
+      return
+    }
+
+    setFormValue('duration', duration)
+  }
   
   return (
     <div className={styles.content}>
@@ -42,11 +53,10 @@ export function VideoForm({
 
         <Input 
           label="Duração" 
-          type="tel"
           placeholder="7200s"
           isRequired
           value={videoData.duration || ''}
-          onChange={e => setFormValue('duration', parseInt(e.target.value))}
+          onChange={e => convertHHmmToSeconds(e.target.value)}
         />
       </div>
     </div>

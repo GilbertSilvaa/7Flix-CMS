@@ -50,6 +50,10 @@
   background-color: var(--red-2);
 }
 
+.content.warning {
+  background-color: var(--yellow-2);
+}
+
 @keyframes drop{
   0% { transform: translateY(-4rem) }
   100% { transform: translateY(1rem) }

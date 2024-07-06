@@ -1,5 +1,6 @@
 import { LuSaveAll } from 'react-icons/lu'
 import { RiArrowGoBackLine } from 'react-icons/ri'
+import { SlReload } from 'react-icons/sl'
 import { Button, Input, Loading, ParentalRatingOptions, TextArea, VideoForm } from '../../../../components'
 import styles from './styles.module.css'
 import { useMovieFormController } from './useMovieFormController'
@@ -15,7 +16,10 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
     handleSubmit, 
     isLoading,
     formData, 
-    successSubmit
+    successSubmit,
+    imdbId,
+    setImdbId,
+    loadDataByImdb
   } = useMovieFormController({ movieEditId: movieId })
 
   if (successSubmit) toBack(true)
@@ -54,18 +58,38 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <fieldset className={styles.formContent} disabled={isLoading.submit}>
+          <section className={styles.search}>
+            <Input 
+              label="ID Imdb"
+              onChange={e => setImdbId(e.target.value)}
+            />
+            <div>
+              <Button 
+                type="button"
+                color="var(--blue-2)" 
+                onClick={loadDataByImdb}
+                isLoading={isLoading.imdb}
+                disabled={!imdbId.length || isLoading.imdb}
+              >
+                <SlReload/>  
+                <span>Carregar</span>          
+              </Button>
+            </div>
+          </section>
+          <hr />
+
           <div className="double-input">
             <Input 
               label="Título" 
               isRequired
-              value={movieId && formData.title}
+              value={formData.title}
               onChange={e => setFormValue('title', e.target.value)} 
             />
             <Input 
               label="Categoria" 
               placeholder="ação, aventura, drama, terror..."
               isRequired
-              value={movieId && formData.category}
+              value={formData.category}
               onChange={e => setFormValue('category', e.target.value)} 
             /> 
           </div>
@@ -73,7 +97,7 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
           <TextArea 
             label="Sinopse"
             isRequired
-            value={movieId && formData.synopsis}
+            value={formData.synopsis}
             onChange={e => setFormValue('synopsis', e.target.value)} 
           />
 
@@ -83,7 +107,7 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
               type="tel"
               placeholder="2020"
               isRequired
-              value={movieId && formData.releaseYear}
+              value={formData.releaseYear}
               onChange={e => setFormValue('releaseYear', e.target.value)} 
             /> 
             <ParentalRatingOptions 
@@ -95,7 +119,7 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
               type="tel"
               placeholder="7.5"
               isRequired
-              value={movieId && formData.review}
+              value={formData.review}
               onChange={e => setFormValue('review', e.target.value)} 
             />  
           </div>
@@ -105,14 +129,14 @@ export function MovieForm({ movieId, toBack }: IMovieFormProps) {
               label="Poster (URL)" 
               placeholder="https://www.imagem.jpg"
               isRequired
-              value={movieId && formData.poster}
+              value={formData.poster}
               onChange={e => setFormValue('poster', e.target.value)} 
             />
             <Input 
               label="Banner (URL)" 
               placeholder="https://www.imagem.jpg"
               isRequired
-              value={movieId && formData.banner}
+              value={formData.banner}
               onChange={e => setFormValue('banner', e.target.value)} 
             />
           </div>

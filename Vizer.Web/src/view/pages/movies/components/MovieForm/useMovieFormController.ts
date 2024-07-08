@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Movie } from '../../../../../app/entities';
 import { useToast } from '../../../../../app/hooks/useToast';
-import { imdbService } from '../../../../../app/services/imbdService';
+import { imdbService } from '../../../../../app/services/imdbService';
 import { movieService } from '../../../../../app/services/movieService';
 
 interface IMovieFormControllerParams {

@@ -28,7 +28,7 @@ export function EpisodeModal({ data, handleClose }: IEpisodeModalProps) {
                 <span>{data?.releaseYear}</span>
               </div>
               
-              <p className={styles.synopsis}>{data?.synopsis || 'Sem descrição'}</p>
+              <div className={styles.synopsis}>{data?.synopsis || 'Sem descrição'}</div>
 
               {data?.video && <VideoDetails video={data?.video}/>}
             </div>

@@ -1,7 +1,7 @@
 ﻿using Vizer.API.Entities;
 using Vizer.API.ValueObjects;
 
-namespace Vizer.API.Dtos.SerieDtos.Requests;
+namespace Vizer.API.Dtos.EpisodeDtos.Requests;
 
 public class CreateEpisodeDto
 {

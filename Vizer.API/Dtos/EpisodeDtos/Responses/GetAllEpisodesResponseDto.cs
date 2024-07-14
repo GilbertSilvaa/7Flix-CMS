@@ -1,6 +1,6 @@
 ﻿using Vizer.API.Entities;
 
-namespace Vizer.API.Dtos.SerieDtos.Responses;
+namespace Vizer.API.Dtos.EpisodeDtos.Responses;
 
 public class GetAllEpisodesResponseDto
 {

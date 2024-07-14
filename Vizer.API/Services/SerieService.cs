@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using Vizer.API.Dtos.EpisodeDtos.Requests;
+using Vizer.API.Dtos.EpisodeDtos.Responses;
 using Vizer.API.Dtos.SerieDtos.Requests;
 using Vizer.API.Dtos.SerieDtos.Responses;
 using Vizer.API.Entities;

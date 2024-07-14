@@ -11,6 +11,7 @@
   flex-direction: column;
   flex: 1;
   height: 50%;
+  margin-top: -1.6rem;
 }
 
 .search {
@@ -49,11 +50,11 @@
 
 .videoContent {
   flex: 1;
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   width: 100%;
-  max-height: 78%;
-  display: flex;
-  gap: 2%;
+  max-height: 72%;
+  display: flex;    
+  gap: 1.75rem;
 
   @media screen and (width < 800px) {
     flex-direction: column;

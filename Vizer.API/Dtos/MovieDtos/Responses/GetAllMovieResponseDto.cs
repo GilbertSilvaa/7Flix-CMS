@@ -2,7 +2,7 @@
 
 namespace Vizer.API.Dtos.MovieDtos.Responses;
 
-public class GetAllMovieResponseDto
+sealed public record GetAllMovieResponseDto
 {
   public string Id { get; set; } = string.Empty;
   public string Title { get; set; } = string.Empty;

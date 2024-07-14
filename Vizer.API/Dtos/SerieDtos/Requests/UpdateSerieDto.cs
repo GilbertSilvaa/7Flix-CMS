@@ -2,7 +2,7 @@
 
 namespace Vizer.API.Dtos.SerieDtos.Requests;
 
-public class UpdateSerieDto
+sealed public record UpdateSerieDto
 {
   public string Id { get; set; } = string.Empty;
   public string Synopsis { get; set; } = string.Empty;

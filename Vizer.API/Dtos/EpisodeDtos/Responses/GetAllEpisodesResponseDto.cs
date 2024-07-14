@@ -2,7 +2,7 @@
 
 namespace Vizer.API.Dtos.EpisodeDtos.Responses;
 
-public class GetAllEpisodesResponseDto
+sealed public record GetAllEpisodesResponseDto
 {
   public string SerieTitle { get; set; } = string.Empty;
   public int NumberSeasons { get; set; }

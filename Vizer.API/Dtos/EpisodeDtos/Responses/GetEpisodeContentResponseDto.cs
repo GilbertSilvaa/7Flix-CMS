@@ -3,7 +3,7 @@ using Vizer.API.ValueObjects;
 
 namespace Vizer.API.Dtos.EpisodeDtos.Responses;
 
-sealed public record class GetEpisodeContentResponseDto
+sealed public record GetEpisodeContentResponseDto
 {
   public string Id { get; set; } = string.Empty;
   public string Title { get; set; } = string.Empty;

@@ -3,7 +3,7 @@ using Vizer.API.ValueObjects;
 
 namespace Vizer.API.Dtos.MovieDtos.Requests;
 
-public class CreateMovieDto
+sealed public record CreateMovieDto
 {
   public string Title { get; set; } = string.Empty;
   public string Synopsis { get; set; } = string.Empty;

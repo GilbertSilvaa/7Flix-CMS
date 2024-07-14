@@ -3,7 +3,7 @@ using Vizer.API.ValueObjects;
 
 namespace Vizer.API.Dtos.EpisodeDtos.Requests;
 
-public class UpdateEpisodeDto
+sealed public record UpdateEpisodeDto
 {
   public string Id { get; set; } = string.Empty;
   public string IdSerie { get; set; } = string.Empty;

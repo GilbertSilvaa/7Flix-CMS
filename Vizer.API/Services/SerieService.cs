@@ -8,7 +8,7 @@ using Vizer.API.Repositories;
 
 namespace Vizer.API.Services;
 
-public class SerieService
+sealed public class SerieService
 {
   private readonly SerieRepository _repository = new();
 

@@ -9,7 +9,7 @@ namespace Vizer.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class SerieController : ControllerBase
+sealed public class SerieController : ControllerBase
 {
   private readonly SerieService _service = new();
 

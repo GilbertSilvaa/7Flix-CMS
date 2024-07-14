@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Vizer.API.Exceptions;
 using Vizer.API.Services;
 
 namespace Vizer.API.Controllers;
@@ -31,6 +32,24 @@ sealed public class ContentController : ControllerBase
     try
     {
       return Ok(await _service.GetSeries());
+    }
+    catch (Exception ex)
+    {
+      return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+    }
+  }
+
+  [HttpGet]
+  [Route("Episodes/{idSerie}/{season}")]
+  public async Task<IActionResult> GetEpisodes(string idSerie, int season)
+  {
+    try
+    {
+      return Ok(await _service.GetEpisodes(idSerie, season));
+    }
+    catch (NotFoundException ex)
+    {
+      return NotFound(ex.Message);
     }
     catch (Exception ex)
     {

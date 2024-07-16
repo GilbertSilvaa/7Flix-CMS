@@ -1,4 +1,4 @@
-@Vizer.API_HostAddress = http://localhost:5219
+@Vizer.API_HostAddress = http://0.0.0.0:5219
 
 GET {{Vizer.API_HostAddress}}/weatherforecast/
 Accept: application/json

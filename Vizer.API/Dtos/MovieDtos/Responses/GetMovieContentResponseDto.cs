@@ -27,7 +27,7 @@ sealed public record GetMovieContentResponseDto
       Banner = movie.Banner,
       Poster = movie.Poster,
       ReleaseYear = movie.ReleaseYear,
-      Review = movie.Review,
+      Review = float.Parse(movie.Review.ToString("0.0")),
       ParentalRating = movie.ParentalRating,
       Video = movie.Video
     };

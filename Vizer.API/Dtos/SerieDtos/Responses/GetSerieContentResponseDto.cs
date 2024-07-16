@@ -27,7 +27,7 @@ sealed public record GetSerieContentResponseDto
       Poster = serie.Poster,
       ReleaseYear = serie.ReleaseYear,
       ParentalRating = serie.ParentalRating,
-      Review = serie.Review,
+      Review = float.Parse(serie.Review.ToString("0.0")),
       NumberSeasons = serie.NumberSeasons
     };
   }

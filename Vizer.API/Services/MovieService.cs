@@ -6,7 +6,7 @@ using Vizer.API.Repositories;
 
 namespace Vizer.API.Services;
 
-public class MovieService
+sealed public class MovieService
 {
   private readonly MovieRepository _repository = new();
 

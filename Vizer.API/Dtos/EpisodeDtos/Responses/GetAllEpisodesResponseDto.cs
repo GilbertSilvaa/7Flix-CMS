@@ -1,8 +1,8 @@
 ﻿using Vizer.API.Entities;
 
-namespace Vizer.API.Dtos.SerieDtos.Responses;
+namespace Vizer.API.Dtos.EpisodeDtos.Responses;
 
-public class GetAllEpisodesResponseDto
+sealed public record GetAllEpisodesResponseDto
 {
   public string SerieTitle { get; set; } = string.Empty;
   public int NumberSeasons { get; set; }
@@ -18,7 +18,7 @@ public class GetAllEpisodesResponseDto
     };
   }
 
-  public class EpisodeDto
+  public record EpisodeDto
   {
     public string Id { get; set; } = string.Empty;
     public string Title { get; set; } = string.Empty;

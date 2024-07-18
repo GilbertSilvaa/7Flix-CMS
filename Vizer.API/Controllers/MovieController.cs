@@ -8,7 +8,7 @@ namespace Vizer.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class MovieController : ControllerBase
+sealed public class MovieController : ControllerBase
 {
   private readonly MovieService _service = new();
 

@@ -3,7 +3,7 @@ using Vizer.API.Repositories;
 
 namespace Vizer.API.Services;
 
-public class DashboardService
+sealed public class DashboardService
 {
   private readonly MovieRepository _movieRepository = new();
   private readonly SerieRepository _serieRepository = new();

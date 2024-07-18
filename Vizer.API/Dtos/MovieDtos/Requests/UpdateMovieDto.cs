@@ -3,7 +3,7 @@ using Vizer.API.ValueObjects;
 
 namespace Vizer.API.Dtos.MovieDtos.Requests;
 
-public class UpdateMovieDto
+sealed public record UpdateMovieDto
 {
   public string Id { get; set; } = string.Empty;
   public string Synopsis { get; set; } = string.Empty;

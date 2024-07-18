@@ -1,10 +1,11 @@
 ﻿using Vizer.API.Entities;
 using Vizer.API.ValueObjects;
 
-namespace Vizer.API.Dtos.SerieDtos.Requests;
+namespace Vizer.API.Dtos.EpisodeDtos.Requests;
 
-public class CreateEpisodeDto
+sealed public record UpdateEpisodeDto
 {
+  public string Id { get; set; } = string.Empty;
   public string IdSerie { get; set; } = string.Empty;
   public string Title { get; set; } = string.Empty;
   public string Synopsis { get; set; } = string.Empty;
@@ -20,6 +21,7 @@ public class CreateEpisodeDto
   {
     return new Episode
     {
+      Id = Id,
       Title = Title,
       Synopsis = Synopsis,
       Video = Video,
@@ -28,7 +30,8 @@ public class CreateEpisodeDto
       Poster = Poster,
       Number = Number,
       ReleaseYear = ReleaseYear,
-      ParentalRating = ParentalRating
+      ParentalRating = ParentalRating,
+      UpdateAt = DateTime.Now
     };
   }
 }

@@ -5,7 +5,7 @@ namespace Vizer.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class DashboardController : ControllerBase
+sealed public class DashboardController : ControllerBase
 {
   private readonly DashboardService _service = new();
 

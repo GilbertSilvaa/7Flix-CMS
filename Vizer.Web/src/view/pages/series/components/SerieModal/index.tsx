@@ -38,7 +38,7 @@ export function SerieModal({ data, handleClose }: ISerieModalProps) {
                 <FaStar/><span>{data?.review.toFixed(1)}</span>
               </div>
 
-              <p className={styles.synopsis}>{data?.synopsis || 'Sem descrição'}</p>
+              <div className={styles.synopsis}>{data?.synopsis || 'Sem descrição'}</div>
 
               <div className={styles.flex}>
                 <div className={styles.tag}>

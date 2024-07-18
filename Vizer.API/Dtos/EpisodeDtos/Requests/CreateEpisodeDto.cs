@@ -1,31 +1,32 @@
 ﻿using Vizer.API.Entities;
 using Vizer.API.ValueObjects;
 
-namespace Vizer.API.Dtos.MovieDtos.Requests;
+namespace Vizer.API.Dtos.EpisodeDtos.Requests;
 
-sealed public record CreateMovieDto
+sealed public record CreateEpisodeDto
 {
+  public string IdSerie { get; set; } = string.Empty;
   public string Title { get; set; } = string.Empty;
   public string Synopsis { get; set; } = string.Empty;
-  public string Category { get; set; } = string.Empty;
   public string Banner { get; set; } = string.Empty;
   public string Poster { get; set; } = string.Empty;
   public string ReleaseYear { get; set; } = string.Empty;
   public int ParentalRating { get; set; }
-  public float Review { get; set; }
+  public int Number {  get; set; }
+  public int Season { get; set; }
   public Video? Video { get; set; }
 
-  public Movie ToEntity()
+  public Episode ToEntity()
   {
-    return new Movie
+    return new Episode
     {
       Title = Title,
       Synopsis = Synopsis,
       Video = Video,
+      Season = Season,
       Banner = Banner,
       Poster = Poster,
-      Review = Review,
-      Category = Category,
+      Number = Number,
       ReleaseYear = ReleaseYear,
       ParentalRating = ParentalRating
     };

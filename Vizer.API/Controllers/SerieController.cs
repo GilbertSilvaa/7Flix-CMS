@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using Vizer.API.Dtos.EpisodeDtos.Requests;
 using Vizer.API.Dtos.SerieDtos.Requests;
 using Vizer.API.Exceptions;
 using Vizer.API.Services;
@@ -8,7 +9,7 @@ namespace Vizer.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class SerieController : ControllerBase
+sealed public class SerieController : ControllerBase
 {
   private readonly SerieService _service = new();
 

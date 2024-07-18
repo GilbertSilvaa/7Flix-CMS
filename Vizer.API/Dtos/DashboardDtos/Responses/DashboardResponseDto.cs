@@ -1,6 +1,6 @@
 ﻿namespace Vizer.API.Dtos.DashboardDtos.Responses;
 
-public record class DashboardResponseDto (
+sealed public record DashboardResponseDto (
   int MoviesCount,
   int SeriesCount,
   int EpisodesCount,

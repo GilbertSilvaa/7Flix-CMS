@@ -2,7 +2,7 @@
 
 namespace Vizer.API.Dtos.SerieDtos.Responses;
 
-public class GetSerieResponseDto
+sealed public record GetSerieResponseDto
 {
   public string Id { get; set; } = string.Empty;
   public string Title { get; set; } = string.Empty;

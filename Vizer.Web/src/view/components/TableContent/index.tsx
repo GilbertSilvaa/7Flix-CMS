@@ -35,6 +35,7 @@ export function TableContent(props: ITableContentProps) {
   const [currentPagination, setCurrentPagination] = useState(0)
 
   function handleSeach(value: string) {
+    setCurrentPagination(0)
     setContent(props.data.filter(({ title }) => 
       title.toLowerCase().match(value.toLowerCase())))
   }

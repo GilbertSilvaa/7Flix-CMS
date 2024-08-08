@@ -22,7 +22,7 @@
 
 .poster {
   width: 30%;
-  height: 320px;
+  height: 172px;
   border-radius: .6rem;
 
   @media screen and (width < 900px) {

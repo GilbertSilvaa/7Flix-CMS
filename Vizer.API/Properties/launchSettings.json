@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://192.168.0.114:64422",
+      "applicationUrl": "http://0.0.0.0:64422",
       "sslPort": 0
     }
   },
@@ -14,10 +14,10 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://192.168.0.114:5219",
+      "applicationUrl": "http://0.0.0.0:5219",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "CONN": "mongodb://localhost:27017",
+        "CONN": "mongodb://0.0.0.0:27017",
         "DB": "Vizer"
       }
     },
@@ -27,7 +27,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "CONN": "mongodb://localhost:27017",
+        "CONN": "mongodb://0.0.0.0:27017",
         "DB": "Vizer"
       }
     }

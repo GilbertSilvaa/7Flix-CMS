@@ -15,9 +15,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "http://0.0.0.0:5219",
+      "applicationUrl": "http://0.0.0.0:5219",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "CONN": "mongodb://0.0.0.0:27017",
+        "CONN": "mongodb://localhost:27017",
         "DB": "Vizer"
       }
     },
@@ -27,7 +28,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "CONN": "mongodb://0.0.0.0:27017",
+        "CONN": "mongodb://localhost:27017",
         "DB": "Vizer"
       }
     }
